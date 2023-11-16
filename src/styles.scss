@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+html,
+body {
+  height: 100%;
+  // background-color: #f6f5f2;
+}
+body {
+  margin: 0;
+  font-family: "Ubuntu", sans-serif;
+}
+.color-base {
+  color: #f7346f;
+}
+// ============================size========================
+.w-90 {
+  width: 90%;
+}
+
+.w-95 {
+  width: 95%;
+}
+.center {
+  margin: 0 auto;
+}
+
+//=========================border=====================
+.border {
+  border-radius: 8px;
+  box-sizing: border-box;
+}
