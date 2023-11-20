@@ -31,3 +31,29 @@ body {
   border-radius: 8px;
   box-sizing: border-box;
 }
+
+.pagegotop {
+  clear: both;
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.pagegotop a.gotop {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  display: none;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  // vertical-align: middle;
+  border-radius: 50% 50%;
+  background-color: #f7346f;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
