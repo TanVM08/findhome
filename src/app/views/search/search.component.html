@@ -30,7 +30,7 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-slider min="0" max="500" class="w-100" step="10" discrete [displayWith]="formatLabel">
+        <mat-slider min="0" max="500" class="w-100" step="10" discrete [displayWith]="formatLabel" [color]="colorBase">
           <input [(ngModel)]="priceStart" matSliderStartThumb>
           <input [(ngModel)]="priceEnd" matSliderEndThumb>
         </mat-slider>
