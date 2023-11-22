@@ -46,17 +46,44 @@ export class SearchComponent implements OnInit {
     },
     {
       value: 1,
-      name: 'Xác thực',
+      name: 'Đã xác thực',
     },
     {
       value: -1,
-      name: 'chưa xác thực',
+      name: 'Chưa xác thực',
     },
   ];
 
+  lstTypeHouse: any = [
+    {
+      value: -1,
+      name: '--Tất cả--',
+    },
+    {
+      value: 1,
+      name: 'Phòng cho thuê',
+    },
+    {
+      value: 2,
+      name: 'Phòng ở ghép',
+    },
+    {
+      value: 3,
+      name: 'Kí túc xá',
+    },
+    {
+      value: 4,
+      name: 'Nhà nguyên căn',
+    },
+    {
+      value: 5,
+      name: 'Căn hộ',
+    }
+  ];
+
   formatLabel(value: number): string {
-    if (value >= 1000) {
-      return Math.round(value / 1000) + 'k';
+    if (value >= 500000) {
+      return (value / 1000000) + 'tr';
     }
 
     return `${value}`;

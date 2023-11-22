@@ -30,7 +30,17 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-slider min="0" max="500" class="w-100" step="10" discrete [displayWith]="formatLabel" [color]="colorBase">
+        <mat-form-field class="w-100">
+          <mat-label>Loại phòng</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let item of lstTypeHouse" [value]="item.value">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <p class="fw-bolder" style="color: #00000099;">Giá phòng</p>
+        <mat-slider min="0" max="20000000" class="w-100" step="500000" discrete [displayWith]="formatLabel" [color]="colorBase">
           <input [(ngModel)]="priceStart" matSliderStartThumb>
           <input [(ngModel)]="priceEnd" matSliderEndThumb>
         </mat-slider>
