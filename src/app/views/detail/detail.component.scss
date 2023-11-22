@@ -34,3 +34,44 @@
     }
   }
 }
+
+.photos:hover {
+  cursor: pointer;
+}
+
+.img-last {
+  position: relative;
+  span {
+    font-size: 48px;
+    color: #ffffff;
+    letter-spacing: 0;
+  }
+}
+
+.more-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  object-fit: cover;
+}
+
+.text-content {
+  font-family: "Montserrat", Sans-serif !important;
+  font-size: 16px;
+  line-height: 32px;
+  letter-spacing: 0;
+  white-space: pre-wrap;
+  margin: 0px !important;
+  color: #000000;
+}

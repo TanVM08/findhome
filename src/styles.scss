@@ -1,18 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 html,
 body {
   height: 100%;
-  // background-color: #f6f5f2;
+  background-color: #f6f5f2;
+  font-family: "Montserrat", sans-serif;
 }
 body {
   margin: 0;
-  font-family: "Ubuntu", sans-serif;
 }
 .color-base {
-  color: #f7346f;
+  color: #f7346f !important;
+}
+.bg-base {
+  background-color: #f7346f !important;
 }
 // ============================size========================
 .w-90 {
@@ -56,4 +59,40 @@ body {
   color: #fff;
   font-size: 24px;
   cursor: pointer;
+}
+
+// ==============================card-custom================================================
+
+.card-custom {
+  background-color: #ffffff;
+  border-radius: 20px;
+}
+.card-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #f7346f;
+  padding-right: 12px;
+  height: 50px;
+  border-radius: 24px;
+  width: fit-content;
+  .icon-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    background: #ffffff;
+    border: 1px solid #f6f7f9;
+    border-radius: 24px;
+    margin-right: 8px;
+    color: #f7346f;
+  }
+  span {
+    font-size: 20px;
+    color: #ffffff;
+    letter-spacing: 0;
+  }
 }
