@@ -13,6 +13,7 @@ import { FooterComponent } from './views/footer/footer.component';
 import { HomeComponent } from './views/home/home.component';
 import { DetailComponent } from './views/detail/detail.component';
 import { SearchComponent } from './views/search/search.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SearchComponent } from './views/search/search.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatCardModule,
     MatSelectModule,
     MatFormFieldModule,

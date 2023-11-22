@@ -30,11 +30,10 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-slider min="0" max="500" class="w-100">
-          <input value={{priceStart}} matSliderStartThumb>
-          <input value={{priceEnd}} matSliderEndThumb>
+        <mat-slider min="0" max="500" class="w-100" step="10" discrete [displayWith]="formatLabel">
+          <input [(ngModel)]="priceStart" matSliderStartThumb>
+          <input [(ngModel)]="priceEnd" matSliderEndThumb>
         </mat-slider>
-
         <button type="button" class="btn btn-danger" (click)="isCheck()">Check</button>
       </div>
     </div>
