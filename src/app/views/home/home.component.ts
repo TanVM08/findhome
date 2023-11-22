@@ -13,4 +13,8 @@ export class HomeComponent implements OnInit {
   doViewDataDetail() {
     this.router.navigate(['detail']);
   }
+
+  doSeach() {
+    this.router.navigate(['search']);
+  }
 }
