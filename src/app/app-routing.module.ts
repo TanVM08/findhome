@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
 import { DetailComponent } from './views/detail/detail.component';
 import { SearchComponent } from './views/search/search.component';
+import { PostRoomComponent } from './views/post-room/post-room.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'search',
     component: SearchComponent,
+  },
+  {
+    path: 'post-room',
+    component: PostRoomComponent,
   },
 ];
 

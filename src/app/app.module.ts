@@ -12,13 +12,17 @@ import {
   MatPaginatorIntl,
   MatPaginatorModule,
 } from '@angular/material/paginator';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { HeaderComponent } from './views/header/header.component';
 import { FooterComponent } from './views/footer/footer.component';
 import { HomeComponent } from './views/home/home.component';
 import { DetailComponent } from './views/detail/detail.component';
 import { SearchComponent } from './views/search/search.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorIntlCro } from './common/utils/MatPaginatorIntlCro';
+import { PostRoomComponent } from './views/post-room/post-room.component';
 
 @NgModule({
   declarations: [
@@ -28,17 +32,22 @@ import { MatPaginatorIntlCro } from './common/utils/MatPaginatorIntlCro';
     HomeComponent,
     DetailComponent,
     SearchComponent,
+    PostRoomComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     FormsModule,
     MatCardModule,
     MatSelectModule,
     MatFormFieldModule,
     MatSliderModule,
     MatPaginatorModule,
+    MatStepperModule,
+    MatInputModule,
+    MatButtonModule,
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro }],
   bootstrap: [AppComponent],

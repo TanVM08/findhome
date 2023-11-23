@@ -13,15 +13,6 @@
         </mat-form-field>
 
         <mat-form-field class="w-100">
-          <mat-label>Xã/phường</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let item of lstDistrict" [value]="item.value">
-              {{item.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="w-100">
           <mat-label>Xác thực</mat-label>
           <mat-select>
             <mat-option *ngFor="let item of lstAccuracy" [value]="item.value">
