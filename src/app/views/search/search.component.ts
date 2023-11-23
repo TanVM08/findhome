@@ -8,8 +8,11 @@ import { ThemePalette } from '@angular/material/core';
 })
 export class SearchComponent implements OnInit {
   colorBase = 'accent' as ThemePalette;
-  priceStart = 100;
-  priceEnd = 400;
+  priceStart = 0;
+  priceEnd = 5000000;
+  page: number = 0;
+  pageSize: number = 10;
+  totalItems: number = 50;
   lstDistrict: any = [
     {
       value: -1,
@@ -78,12 +81,12 @@ export class SearchComponent implements OnInit {
     {
       value: 5,
       name: 'Căn hộ',
-    }
+    },
   ];
 
   formatLabel(value: number): string {
     if (value >= 500000) {
-      return (value / 1000000) + 'tr';
+      return value / 1000000 + 'tr';
     }
 
     return `${value}`;
@@ -94,4 +97,6 @@ export class SearchComponent implements OnInit {
     console.log('priceEnd', this.priceEnd);
   }
   ngOnInit(): void {}
+
+  onChangePage(item: any) {}
 }

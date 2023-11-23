@@ -8,12 +8,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
+import {
+  MatPaginatorIntl,
+  MatPaginatorModule,
+} from '@angular/material/paginator';
 import { HeaderComponent } from './views/header/header.component';
 import { FooterComponent } from './views/footer/footer.component';
 import { HomeComponent } from './views/home/home.component';
 import { DetailComponent } from './views/detail/detail.component';
 import { SearchComponent } from './views/search/search.component';
 import { FormsModule } from '@angular/forms';
+import { MatPaginatorIntlCro } from './common/utils/MatPaginatorIntlCro';
 
 @NgModule({
   declarations: [
@@ -33,8 +38,9 @@ import { FormsModule } from '@angular/forms';
     MatSelectModule,
     MatFormFieldModule,
     MatSliderModule,
+    MatPaginatorModule,
   ],
-  providers: [],
+  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
