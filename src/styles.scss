@@ -2,6 +2,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+$base-color: #f7346f;
 html,
 body {
   height: 100%;
@@ -12,10 +13,10 @@ body {
   margin: 0;
 }
 .color-base {
-  color: #f7346f !important;
+  color: $base-color !important;
 }
 .bg-base {
-  background-color: #f7346f !important;
+  background-color: $base-color !important;
 }
 // ============================size========================
 .w-90 {
@@ -55,7 +56,7 @@ body {
   text-align: center;
   // vertical-align: middle;
   border-radius: 50% 50%;
-  background-color: #f7346f;
+  background-color: $base-color;
   color: #fff;
   font-size: 24px;
   cursor: pointer;
@@ -72,7 +73,7 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background: #f7346f;
+  background: $base-color;
   padding-right: 12px;
   height: 50px;
   border-radius: 24px;
@@ -88,7 +89,7 @@ body {
     border: 1px solid #f6f7f9;
     border-radius: 24px;
     margin-right: 8px;
-    color: #f7346f;
+    color: $base-color;
   }
   span {
     font-size: 20px;
