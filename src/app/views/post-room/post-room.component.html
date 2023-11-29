@@ -1,71 +1,111 @@
 <div class="contain pt-4 w-95 center">
 
-  <div class="card-custom p-3">
-    <button mat-raised-button (click)="isEditable = !isEditable">
-      {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
-    </button>
+  <div class="card-custom p-3" [formGroup]="firstFormGroup">
+    <p class="fw-bolder fs-5 color-base">Thông tin phòng</p>
+    <div class="row mt-3">
+      <div class="col col-lg-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Loại phòng</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+      <div class="col col-lg-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Số lượng phòng hiện có</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+      <div class="col col-lg-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Diện tích</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+      <div class="col col-lg-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Giá cho thuê</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+    </div>
 
-    <mat-stepper linear #stepper color="accent" labelPosition="bottom">
-      <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
-        <form [formGroup]="firstFormGroup">
-          <ng-template matStepLabel>Fill out your name</ng-template>
-          <mat-form-field>
-            <mat-label>Name</mat-label>
-            <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
-        <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>Fill out your address</ng-template>
-          <mat-form-field>
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
-        <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>Fill out your address</ng-template>
-          <mat-form-field>
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
-        <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>Fill out your address</ng-template>
-          <mat-form-field>
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-          </mat-form-field>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        <p>You are now done.</p>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
-        </div>
-      </mat-step>
-    </mat-stepper>
+    <p class="fw-bolder fs-5 color-base">Chi phí sinh hoạt</p>
+    <div class="row mt-3">
+      <div class="col col-lg-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Đặt cọc</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+      <div class="col col-lg-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Tiền điện</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+      <div class="col col-lg-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Tiền nước</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+      <div class="col col-lg-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Wifi</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <p class="fw-bolder fs-5 color-base">Địa chỉ</p>
+    <div class="row mt-3">
+      <div class="col col-lg-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Quận huyện</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+      <div class="col col-lg-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Xã phường/thị trấn</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+      <div class="col col-lg-6">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Tên đường, số nhà</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <p class="fw-bolder fs-5 color-base">Tiện ích mô tả</p>
+    <div class="row mt-3">
+      <div class="col col-lg-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Loại phòng</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+      <div class="col col-lg-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Số lượng phòng hiện có</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+      <div class="col col-lg-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Diện tích</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+      <div class="col col-lg-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Giá cho thuê</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+    </div>
   </div>
 
 

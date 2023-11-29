@@ -15,6 +15,8 @@ import {
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from './views/header/header.component';
 import { FooterComponent } from './views/footer/footer.component';
 import { HomeComponent } from './views/home/home.component';
@@ -23,6 +25,7 @@ import { SearchComponent } from './views/search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorIntlCro } from './common/utils/MatPaginatorIntlCro';
 import { PostRoomComponent } from './views/post-room/post-room.component';
+import { LoginComponent } from './views/login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,7 @@ import { PostRoomComponent } from './views/post-room/post-room.component';
     DetailComponent,
     SearchComponent,
     PostRoomComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +52,8 @@ import { PostRoomComponent } from './views/post-room/post-room.component';
     MatStepperModule,
     MatInputModule,
     MatButtonModule,
+    MatDialogModule,
+    MatIconModule,
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro }],
   bootstrap: [AppComponent],

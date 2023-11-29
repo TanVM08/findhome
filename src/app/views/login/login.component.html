@@ -1,0 +1,31 @@
+<div class="card-custom p-3 form-login">
+  <p class="text-center fs-5">ĐĂNG NHẬP</p>
+  <button type="button" class="btn-close" aria-label="Close" (click)="doClose()"></button>
+  <div class="bg-base p-3 rounded-pill text-center text-bg-primary">
+    <i class="fa fa-google-plus" aria-hidden="true"></i>
+    &nbsp;Đăng nhập bằng google
+  </div>
+  <p class="text-center fs-5 mt-3">Hoặc</p>
+  <div class="login m-3">
+    <mat-form-field appearance="outline" class="w-100" color="accent">
+      <mat-label>Tên đăng nhập</mat-label>
+      <input matInput placeholder="Nhập thông tin...">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100" color="accent">
+      <mat-label>Mật khẩu</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <div class="row justify-content-center">
+      <button type="button" class="btn btn-danger bg-base rounded-pill">
+        <i class="fa fa-sign-in" aria-hidden="true"></i>
+        &nbsp;Đăng nhập</button>
+    </div>
+    <p class="text-end color-base text-decoration-underline mt-2">Quên mật khẩu ?</p>
+    <p class="text-center fs-5 mt-3 text-decoration-underline">Đăng kí</p>
+  </div>
+</div>

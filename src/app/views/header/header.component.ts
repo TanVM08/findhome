@@ -1,10 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  constructor(public dialog: MatDialog) {}
+  ngOnInit(): void {}
 
+  doLogin() {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '25%',
+      // disableClose: true,
+      position: { top: '8%' },
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      // this.doSearch();
+    });
+  }
 }
