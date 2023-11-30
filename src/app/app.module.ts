@@ -29,6 +29,9 @@ import { LoginComponent } from './views/login/login.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatChipsModule } from '@angular/material/chips';
+import { ToastrModule } from 'ngx-toastr';
+import { ImagePreviewComponent } from './views/image-preview/image-preview.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +42,7 @@ import { MatRadioModule } from '@angular/material/radio';
     SearchComponent,
     PostRoomComponent,
     LoginComponent,
+    ImagePreviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +63,8 @@ import { MatRadioModule } from '@angular/material/radio';
     NgxMaterialTimepickerModule,
     MatSlideToggleModule,
     MatRadioModule,
+    MatChipsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro }],
   bootstrap: [AppComponent],

@@ -4,27 +4,35 @@
     <p class="fw-bolder fs-5 color-base">Thông tin phòng</p>
     <div class="row mt-3">
       <div class="col col-lg-3">
-        <mat-form-field class="w-100" appearance="outline" color="accent">
+        <mat-form-field class="w-100" color="accent" appearance="outline">
           <mat-label>Loại phòng</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <mat-select>
+            <mat-option *ngFor="let item of lstRoomType" [value]="item.value">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Số lượng phòng hiện có</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required type="number"
+            min="1">
+          <span matTextSuffix>phòng</span>
         </mat-form-field>
       </div>
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Diện tích</mat-label>
           <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <span matTextSuffix>m2</span>
         </mat-form-field>
       </div>
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Giá cho thuê</mat-label>
           <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <span matTextSuffix>/tháng</span>
         </mat-form-field>
       </div>
     </div>
@@ -62,18 +70,21 @@
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Tiền điện</mat-label>
           <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <span matTextSuffix>/số</span>
         </mat-form-field>
       </div>
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Tiền nước</mat-label>
           <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <span matTextSuffix>/Khối</span>
         </mat-form-field>
       </div>
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Wifi</mat-label>
           <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <span matTextSuffix>/tháng</span>
         </mat-form-field>
       </div>
     </div>
@@ -102,29 +113,30 @@
 
     <p class="fw-bolder fs-5 color-base">Tiện ích mô tả</p>
     <div class="row mt-3">
-      <div class="col col-lg-3">
-        <mat-form-field class="w-100" appearance="outline" color="accent">
-          <mat-label>Loại phòng</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
-        </mat-form-field>
+      <div class="col col-lg-6">
+        <button type="button" class="btn btn-info color-white" (click)="fileField.click()">
+          <i class="fa fa-file-image-o" aria-hidden="true"></i>
+          Upload ảnh</button>
+        <input type="file" #fileField (change)="changeFile($event)" hidden accept="video/*,image/*" multiple />
+        <div class="row mt-2">
+          <li>
+            <mat-chip-listbox *ngFor="let item of listImage; index as i">
+              <mat-chip (click)="doPreview(item)">
+                <img matChipAvatar src="{{ 'data:image/jpg;base64,' + (item.imgData ? item.imgData : '')}}" />
+                {{ (item.name).length > 30
+                ? (item.name | slice : 0 : 30) +
+                "..."
+                : item.name }}
+                <button matChipRemove (click)="removeFile(i)">
+                  <i class="fa fa-times"></i>
+                </button>
+              </mat-chip>
+            </mat-chip-listbox>
+          </li>
+        </div>
       </div>
-      <div class="col col-lg-3">
-        <mat-form-field class="w-100" appearance="outline" color="accent">
-          <mat-label>Số lượng phòng hiện có</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
-        </mat-form-field>
-      </div>
-      <div class="col col-lg-3">
-        <mat-form-field class="w-100" appearance="outline" color="accent">
-          <mat-label>Diện tích</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
-        </mat-form-field>
-      </div>
-      <div class="col col-lg-3">
-        <mat-form-field class="w-100" appearance="outline" color="accent">
-          <mat-label>Giá cho thuê</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
-        </mat-form-field>
+      <div class="col col-lg-6">
+
       </div>
     </div>
 

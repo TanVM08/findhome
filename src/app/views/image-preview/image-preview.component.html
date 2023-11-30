@@ -1,0 +1,10 @@
+<div class="card-custom p-3">
+  <div class="modal-header">
+    <p class="fs-5">{{dataInput.imgName}}</p>
+  </div>
+  <div class="row mt-3">
+    <div *ngIf="dataInput && dataInput.fileContent">
+      <img class="img-thumbnail" src="{{ 'data:image/png;base64,' + dataInput.fileContent }}" />
+    </div>
+  </div>
+</div>
