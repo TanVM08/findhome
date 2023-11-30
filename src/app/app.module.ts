@@ -26,7 +26,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorIntlCro } from './common/utils/MatPaginatorIntlCro';
 import { PostRoomComponent } from './views/post-room/post-room.component';
 import { LoginComponent } from './views/login/login.component';
-
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatRadioModule } from '@angular/material/radio';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +56,9 @@ import { LoginComponent } from './views/login/login.component';
     MatButtonModule,
     MatDialogModule,
     MatIconModule,
+    NgxMaterialTimepickerModule,
+    MatSlideToggleModule,
+    MatRadioModule,
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro }],
   bootstrap: [AppComponent],

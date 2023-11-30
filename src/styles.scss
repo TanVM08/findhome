@@ -113,3 +113,9 @@ body {
 .mdc-text-field--outlined {
   --mdc-outlined-text-field-container-shape: 16px !important;
 }
+// =========================custom timepicker=====================
+.time-picker-custom {
+  height: 50px;
+  border-radius: 16px;
+  border-width: 1px !important;
+}

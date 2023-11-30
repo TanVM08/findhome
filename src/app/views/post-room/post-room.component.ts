@@ -7,6 +7,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./post-room.component.scss'],
 })
 export class PostRoomComponent implements OnInit {
+  timeShow: boolean = false;
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });

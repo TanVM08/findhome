@@ -28,6 +28,27 @@
         </mat-form-field>
       </div>
     </div>
+    <div class="row mb-3">
+      <div class="col-3">
+        <span class="fs-5 color-base">Thời gian sinh hoạt </span>
+        <mat-radio-group [(ngModel)]="timeShow" [ngModelOptions]="{standalone: true}">
+          <mat-radio-button [value]="false">Tự do</mat-radio-button>
+          <mat-radio-button [value]="true">Hạn chế</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="col-3" *ngIf="timeShow">
+        <div class="row">
+          <div class="col-6">
+            <input [ngxTimepicker]="picker1" class="w-100 time-picker-custom" placeholder="Giờ mở cửa...">
+            <ngx-material-timepicker #picker1></ngx-material-timepicker>
+          </div>
+          <div class="col-6">
+            <input [ngxTimepicker]="picker2" class="w-100 time-picker-custom" placeholder="Giờ đóng cửa...">
+            <ngx-material-timepicker #picker2></ngx-material-timepicker>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <p class="fw-bolder fs-5 color-base">Chi phí sinh hoạt</p>
     <div class="row mt-3">
@@ -106,6 +127,7 @@
         </mat-form-field>
       </div>
     </div>
+
   </div>
 
 
