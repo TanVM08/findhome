@@ -92,15 +92,10 @@ export class PostRoomComponent implements OnInit {
     this.lstFile.splice(index, 1);
   }
 
-  doPreview(item: any) {
-    let params = {
-      imgName: item.name,
-      fileContent: item.imgData,
-    };
-
+  doPreview() {
     this.dialog.open(ImagePreviewComponent, {
       width: '50%',
-      data: params,
+      data: this.listImage,
     });
   }
 }

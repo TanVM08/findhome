@@ -10,7 +10,9 @@ export class ImagePreviewComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<ImagePreviewComponent>,
     @Inject(MAT_DIALOG_DATA) public dataInput: any
-  ) {}
+  ) {
+    console.log('dataInput', dataInput);
+  }
   ngOnInit(): void {}
 
   doClose(): any {
