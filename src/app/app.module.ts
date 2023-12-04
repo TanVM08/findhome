@@ -32,6 +32,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatChipsModule } from '@angular/material/chips';
 import { ToastrModule } from 'ngx-toastr';
 import { ImagePreviewComponent } from './views/image-preview/image-preview.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +66,7 @@ import { ImagePreviewComponent } from './views/image-preview/image-preview.compo
     MatRadioModule,
     MatChipsModule,
     ToastrModule.forRoot(),
+    CKEditorModule
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro }],
   bootstrap: [AppComponent],

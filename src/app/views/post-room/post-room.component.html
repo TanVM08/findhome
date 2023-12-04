@@ -121,7 +121,7 @@
         <div class="row mt-2">
           <li>
             <mat-chip-listbox *ngFor="let item of listImage; index as i">
-              <mat-chip (click)="doPreview()">
+              <mat-chip (click)="doPreview(item)">
                 <img matChipAvatar src="{{ 'data:image/jpg;base64,' + (item.imgData ? item.imgData : '')}}" />
                 {{ (item.name).length > 30
                 ? (item.name | slice : 0 : 30) +
@@ -135,8 +135,9 @@
           </li>
         </div>
       </div>
-      <div class="col col-lg-6">
-
+      <div class="col col-lg-6 mt-1">
+      <p class="fw-bolder fs-5"> Mô tả chi tiết</p>
+      <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
       </div>
     </div>
 

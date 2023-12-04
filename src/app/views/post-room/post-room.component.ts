@@ -5,12 +5,14 @@ import * as _ from 'lodash';
 import { ToastNotiService } from 'src/app/common/services/toastr/toast-noti.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ImagePreviewComponent } from '../image-preview/image-preview.component';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 @Component({
   selector: 'app-post-room',
   templateUrl: './post-room.component.html',
   styleUrls: ['./post-room.component.scss'],
 })
 export class PostRoomComponent implements OnInit {
+  public Editor = ClassicEditor;
   timeShow: boolean = false;
   imgBase64!: string;
   lstFile: any = [];
@@ -92,10 +94,14 @@ export class PostRoomComponent implements OnInit {
     this.lstFile.splice(index, 1);
   }
 
-  doPreview() {
+  doPreview(item:any) {
+    let param={
+      imgActive:item,
+      lstImage:this.listImage
+    }
     this.dialog.open(ImagePreviewComponent, {
       width: '50%',
-      data: this.listImage,
+      data: param,
     });
   }
 }

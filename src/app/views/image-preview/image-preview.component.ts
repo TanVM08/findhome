@@ -7,11 +7,16 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./image-preview.component.scss'],
 })
 export class ImagePreviewComponent implements OnInit {
+
+  imgActive:any;
+  ltsImage:any=[];
   constructor(
     private dialogRef: MatDialogRef<ImagePreviewComponent>,
     @Inject(MAT_DIALOG_DATA) public dataInput: any
   ) {
     console.log('dataInput', dataInput);
+    this.imgActive=dataInput.imgActive;
+    this.ltsImage=dataInput.lstImage
   }
   ngOnInit(): void {}
 
