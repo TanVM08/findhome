@@ -33,6 +33,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ToastrModule } from 'ngx-toastr';
 import { ImagePreviewComponent } from './views/image-preview/image-preview.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { RoomPreviewComponent } from './views/room-preview/room-preview.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +45,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     PostRoomComponent,
     LoginComponent,
     ImagePreviewComponent,
+    RoomPreviewComponent,
   ],
   imports: [
     BrowserModule,

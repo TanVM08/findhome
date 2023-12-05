@@ -38,7 +38,7 @@
     </div>
     <div class="row mb-3">
       <div class="col-3">
-        <span class="fs-5 color-base">Thời gian sinh hoạt </span>
+        <span class="fs-5">Thời gian sinh hoạt </span>
         <mat-radio-group [(ngModel)]="timeShow" [ngModelOptions]="{standalone: true}">
           <mat-radio-button [value]="false">Tự do</mat-radio-button>
           <mat-radio-button [value]="true">Hạn chế</mat-radio-button>
@@ -113,6 +113,10 @@
 
     <p class="fw-bolder fs-5 color-base">Tiện ích mô tả</p>
     <div class="row mt-3">
+      <div class="col col-lg-6 mt-1">
+        <p class=" fs-5"> Mô tả chi tiết</p>
+        <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+      </div>
       <div class="col col-lg-6">
         <button type="button" class="btn btn-info color-white" (click)="fileField.click()">
           <i class="fa fa-file-image-o" aria-hidden="true"></i>
@@ -135,12 +139,43 @@
           </li>
         </div>
       </div>
-      <div class="col col-lg-6 mt-1">
-      <p class="fw-bolder fs-5"> Mô tả chi tiết</p>
-      <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
-      </div>
     </div>
 
+    <p class="fw-bolder fs-5 color-base mt-3">Xác nhận</p>
+    <div class="row mt-3">
+      <div class="col col-lg-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Tên chủ phòng</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+      <div class="col col-lg-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Số điện thoại</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+      <div class="col col-lg-6">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Tiêu đề bài đăng</mat-label>
+          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="text-end">
+      <button type="button" class="btn btn-warning color-white me-3" (click)="isPreviewRoom()">
+        <i class="fa fa-eye" aria-hidden="true"></i>
+        Xem trước
+      </button>
+      <button type="button" class="btn btn-info color-white me-3">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        Tạo nháp
+      </button>
+      <button type="button" class="btn btn-danger bg-base">
+        <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+        Đăng phòng
+      </button>
+    </div>
   </div>
 
 

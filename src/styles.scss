@@ -116,9 +116,33 @@ body {
 .mdc-text-field--outlined {
   --mdc-outlined-text-field-container-shape: 16px !important;
 }
-// =========================custom timepicker=====================
+// =========================custom timepicker==================
 .time-picker-custom {
   height: 50px;
   border-radius: 16px;
   border-width: 1px !important;
+}
+// ========================custom scroll========================
+//===================custom scroll=================
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+  width: 12px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 2px solid white;
+  background-color: rgba(58, 54, 54, 0.5);
+}
+
+::-webkit-scrollbar-track {
+  background-color: #fff;
+  border-radius: 8px;
 }

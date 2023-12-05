@@ -6,6 +6,7 @@ import { ToastNotiService } from 'src/app/common/services/toastr/toast-noti.serv
 import { MatDialog } from '@angular/material/dialog';
 import { ImagePreviewComponent } from '../image-preview/image-preview.component';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { RoomPreviewComponent } from '../room-preview/room-preview.component';
 @Component({
   selector: 'app-post-room',
   templateUrl: './post-room.component.html',
@@ -94,14 +95,20 @@ export class PostRoomComponent implements OnInit {
     this.lstFile.splice(index, 1);
   }
 
-  doPreview(item:any) {
-    let param={
-      imgActive:item,
-      lstImage:this.listImage
-    }
+  doPreview(item: any) {
+    let param = {
+      imgActive: item,
+      lstImage: this.listImage,
+    };
     this.dialog.open(ImagePreviewComponent, {
       width: '50%',
       data: param,
+    });
+  }
+  isPreviewRoom() {
+    this.dialog.open(RoomPreviewComponent, {
+      width: '80%',
+      height: '80%',
     });
   }
 }
