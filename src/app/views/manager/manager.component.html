@@ -1,0 +1,21 @@
+<mat-sidenav-container class="container-manager">
+  <mat-sidenav opened mode="side" [style.width]="'250px'">
+    <div class="sidenav-header">
+      <img src="../../../assets/image/LEWLEW.png" alt="" width="100" height="100">
+      <div class="header-text">
+        <h2>Vũ Minh Tân</h2>
+      </div>
+    </div>
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let item of lstMenuItem" [routerLink]="item.route" routerLinkActive="selected-menu-item"
+        #rla="routerLinkActive" [activated]="rla.isActive" color="accent">
+        <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
+        <span matListItemTitle>{{item.label}}</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

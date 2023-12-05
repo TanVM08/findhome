@@ -17,6 +17,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 import { HeaderComponent } from './views/header/header.component';
 import { FooterComponent } from './views/footer/footer.component';
 import { HomeComponent } from './views/home/home.component';
@@ -34,6 +36,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { ImagePreviewComponent } from './views/image-preview/image-preview.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { RoomPreviewComponent } from './views/room-preview/room-preview.component';
+import { ManagerComponent } from './views/manager/manager.component';
+import { DashboardComponent } from './views/manager/dashboard/dashboard.component';
+import { UserComponent } from './views/manager/user/user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +51,9 @@ import { RoomPreviewComponent } from './views/room-preview/room-preview.componen
     LoginComponent,
     ImagePreviewComponent,
     RoomPreviewComponent,
+    ManagerComponent,
+    DashboardComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +76,9 @@ import { RoomPreviewComponent } from './views/room-preview/room-preview.componen
     MatRadioModule,
     MatChipsModule,
     ToastrModule.forRoot(),
-    CKEditorModule
+    CKEditorModule,
+    MatSidenavModule,
+    MatListModule,
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro }],
   bootstrap: [AppComponent],
