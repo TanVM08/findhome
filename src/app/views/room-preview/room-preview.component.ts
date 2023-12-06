@@ -10,7 +10,9 @@ export class RoomPreviewComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<RoomPreviewComponent>,
     @Inject(MAT_DIALOG_DATA) public dataInput: any
-  ) {}
+  ) {
+    console.log('dataPreview', dataInput);
+  }
   ngOnInit(): void {}
 
   doClose(): void {

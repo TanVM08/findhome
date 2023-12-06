@@ -1,12 +1,12 @@
 <div class="contain pt-4 w-95 center">
 
-  <div class="card-custom p-3" [formGroup]="firstFormGroup">
+  <div class="card-custom p-3" [formGroup]="roomFrom">
     <p class="fw-bolder fs-5 color-base">Thông tin phòng</p>
     <div class="row mt-3">
       <div class="col col-lg-3">
         <mat-form-field class="w-100" color="accent" appearance="outline">
           <mat-label>Loại phòng</mat-label>
-          <mat-select>
+          <mat-select formControlName="type">
             <mat-option *ngFor="let item of lstRoomType" [value]="item.value">
               {{item.name}}
             </mat-option>
@@ -16,30 +16,41 @@
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Số lượng phòng hiện có</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required type="number"
+          <input matInput formControlName="totalRToom" placeholder="Nhập số lượng phòng..." required type="number"
             min="1">
           <span matTextSuffix>phòng</span>
+          <mat-error *ngIf="roomFrom.controls['totalRToom'].hasError('required')">
+            Vui lòng nhập thông tin
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Diện tích</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <input matInput formControlName="acreage" placeholder="Nhập diện tích..." required>
           <span matTextSuffix>m2</span>
+          <mat-error *ngIf="roomFrom.controls['acreage'].hasError('required')">
+            Vui lòng nhập thông tin
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Giá cho thuê</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <input matInput formControlName="rentalPrice" placeholder="Nhập giá cho thuê" required currencyMask
+            [options]="{ prefix: '',thousands: '.', precision: 0,suffix:' VND' }">
           <span matTextSuffix>/tháng</span>
+          <mat-error *ngIf="roomFrom.controls['rentalPrice'].hasError('required')">
+            Vui lòng nhập thông tin
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-3">
-        <span class="fs-5">Thời gian sinh hoạt </span>
-        <mat-radio-group [(ngModel)]="timeShow" [ngModelOptions]="{standalone: true}">
+        <span class="fs-5">Giờ sinh hoạt </span>
+        <mat-radio-group [(ngModel)]="timeShow" [ngModelOptions]="{standalone: true}"
+          (ngModelChange)="isCheckShowTime()">
           <mat-radio-button [value]="false">Tự do</mat-radio-button>
           <mat-radio-button [value]="true">Hạn chế</mat-radio-button>
         </mat-radio-group>
@@ -47,12 +58,20 @@
       <div class="col-3" *ngIf="timeShow">
         <div class="row">
           <div class="col-6">
-            <input [ngxTimepicker]="picker1" class="w-100 time-picker-custom" placeholder="Giờ mở cửa...">
+            <input [ngxTimepicker]="picker1" class="w-100 time-picker-custom" placeholder="Giờ mở cửa..."
+              formControlName="timeStart">
             <ngx-material-timepicker #picker1></ngx-material-timepicker>
+            <mat-error *ngIf="roomFrom.controls['timeStart'].hasError('required')">
+              Vui lòng nhập thông tin
+            </mat-error>
           </div>
           <div class="col-6">
-            <input [ngxTimepicker]="picker2" class="w-100 time-picker-custom" placeholder="Giờ đóng cửa...">
+            <input [ngxTimepicker]="picker2" class="w-100 time-picker-custom" placeholder="Giờ đóng cửa..."
+              formControlName="timeEnd">
             <ngx-material-timepicker #picker2></ngx-material-timepicker>
+            <mat-error *ngIf="roomFrom.controls['timeEnd'].hasError('required')">
+              Vui lòng nhập thông tin
+            </mat-error>
           </div>
         </div>
       </div>
@@ -63,27 +82,40 @@
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Đặt cọc</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <input matInput formControlName="deposits" placeholder="Nhập số tiền đặt cọc..." required currencyMask
+            [options]="{ prefix: '',thousands: '.', precision: 0,suffix:' VND' }">
+          <mat-error *ngIf="roomFrom.controls['deposits'].hasError('required')">
+            Vui lòng nhập thông tin
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Tiền điện</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <input matInput formControlName="electricBill" placeholder="Nhập tiền điện..." required currencyMask
+            [options]="{ prefix: '',thousands: '.', precision: 0,suffix:' VND' }">
           <span matTextSuffix>/số</span>
+          <mat-error *ngIf="roomFrom.controls['electricBill'].hasError('required')">
+            Vui lòng nhập thông tin
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Tiền nước</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <input matInput formControlName="waterBill" placeholder="Nhập tiền nước..." required currencyMask
+            [options]="{ prefix: '',thousands: '.', precision: 0,suffix:' VND' }">
           <span matTextSuffix>/Khối</span>
+          <mat-error *ngIf="roomFrom.controls['waterBill'].hasError('required')">
+            Vui lòng nhập thông tin
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Wifi</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <input matInput formControlName="internetBill" placeholder="Nhập tiền wifi" required currencyMask
+            [options]="{ prefix: '',thousands: '.', precision: 0,suffix:' VND' }">
           <span matTextSuffix>/tháng</span>
         </mat-form-field>
       </div>
@@ -94,19 +126,19 @@
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Quận huyện</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <input matInput formControlName="districId" placeholder="Last name, First name" required>
         </mat-form-field>
       </div>
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Xã phường/thị trấn</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <input matInput formControlName="warId" placeholder="Last name, First name" required>
         </mat-form-field>
       </div>
       <div class="col col-lg-6">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Tên đường, số nhà</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <input matInput formControlName="address" required>
         </mat-form-field>
       </div>
     </div>
@@ -115,7 +147,7 @@
     <div class="row mt-3">
       <div class="col col-lg-6 mt-1">
         <p class=" fs-5"> Mô tả chi tiết</p>
-        <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+        <ckeditor [editor]="Editor" formControlName="description" required></ckeditor>
       </div>
       <div class="col col-lg-6">
         <button type="button" class="btn btn-info color-white" (click)="fileField.click()">
@@ -146,19 +178,28 @@
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Tên chủ phòng</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <input matInput placeholder="Last name, First name" required>
         </mat-form-field>
       </div>
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Số điện thoại</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <input matInput formControlName="phoneNumber" placeholder="Nhập số điện thoại..." required>
+          <mat-error *ngIf="roomFrom.controls['phoneNumber'].hasError('required')">
+            Vui lòng chọn thông tin
+          </mat-error>
+          <mat-error *ngIf="roomFrom.controls['phoneNumber'].hasError('pattern')">
+            Định dạng số điện thoại không đúng
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="col col-lg-6">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Tiêu đề bài đăng</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+          <input matInput formControlName="title" required>
+          <mat-error *ngIf="roomFrom.controls['title'].hasError('required')">
+            Vui lòng chọn thông tin
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -167,7 +208,7 @@
         <i class="fa fa-eye" aria-hidden="true"></i>
         Xem trước
       </button>
-      <button type="button" class="btn btn-info color-white me-3">
+      <button type="button" class="btn btn-info color-white me-3" (click)="doSave()">
         <i class="fa fa-plus" aria-hidden="true"></i>
         Tạo nháp
       </button>

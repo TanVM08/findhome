@@ -25,6 +25,7 @@
     "jquery": "^3.6.3",
     "lodash": "^4.17.21",
     "luxon": "^3.4.4",
+    "ngx-currency": "^4.0.0",
     "ngx-material-timepicker": "^13.1.1",
     "ngx-toastr": "^17.0.2",
     "rxjs": "~7.8.0",

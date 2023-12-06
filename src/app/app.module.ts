@@ -39,6 +39,9 @@ import { RoomPreviewComponent } from './views/room-preview/room-preview.componen
 import { ManagerComponent } from './views/manager/manager.component';
 import { DashboardComponent } from './views/manager/dashboard/dashboard.component';
 import { UserComponent } from './views/manager/user/user.component';
+import { CurrencyFormatDirective } from './common/directive/currency-format.directive';
+import { CurrencyPipe, DecimalPipe } from '@angular/common';
+import { NgxCurrencyDirective } from 'ngx-currency';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +57,7 @@ import { UserComponent } from './views/manager/user/user.component';
     ManagerComponent,
     DashboardComponent,
     UserComponent,
+    CurrencyFormatDirective,
   ],
   imports: [
     BrowserModule,
@@ -79,8 +83,13 @@ import { UserComponent } from './views/manager/user/user.component';
     CKEditorModule,
     MatSidenavModule,
     MatListModule,
+    NgxCurrencyDirective,
   ],
-  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro }],
+  providers: [
+    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro },
+    CurrencyPipe,
+    DecimalPipe,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
