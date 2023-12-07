@@ -64,7 +64,8 @@ export class PostRoomComponent implements OnInit {
     this.roomFrom = this.fb.group({
       id: [null, []],
       type: [null, [Validators.required]], //kieu phong
-      totalRToom: [1, [Validators.required]], //so luong phong hien co
+      totalRoom: [1, [Validators.required]], //so luong phong hien co
+      totalPersion: [null, Validators.required],
       acreage: [null, [Validators.required]], // dien tich
       rentalPrice: [null, [Validators.required]], //gia cho thue
       deposits: [null, [Validators.required]], // dat coc
@@ -89,9 +90,19 @@ export class PostRoomComponent implements OnInit {
   changeFile(event: any) {
     if (event) {
       let arrFile = event.target.files;
+      if (arrFile.length < 5 || arrFile.length > 10) {
+        this.toastr.showWarning(
+          'Cảnh báo',
+          'Upload ít nhất 5 ảnh và nhiều nhất 10 ảnh!'
+        );
+        return;
+      }
       for (let i = 0; i < arrFile.length; i++) {
         if (!_.includes(this.acceptTypeImage, arrFile[i].type)) {
-          this.toastr.showWarning('Chỉ được upload file có định dạng ảnh !');
+          this.toastr.showWarning(
+            'Cảnh báo',
+            'Chỉ được upload file có định dạng ảnh !'
+          );
           return;
         } else if (_.includes(this.acceptTypeImage, arrFile[i].type)) {
           let fileObj = arrFile[i];

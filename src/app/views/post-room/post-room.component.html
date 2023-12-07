@@ -11,15 +11,18 @@
               {{item.name}}
             </mat-option>
           </mat-select>
+          <mat-error *ngIf="roomFrom.controls['type'].hasError('required')">
+            Vui lòng chọn thông tin
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Số lượng phòng hiện có</mat-label>
-          <input matInput formControlName="totalRToom" placeholder="Nhập số lượng phòng..." required type="number"
+          <input matInput formControlName="totalRoom" placeholder="Nhập số lượng phòng..." required type="number"
             min="1">
           <span matTextSuffix>phòng</span>
-          <mat-error *ngIf="roomFrom.controls['totalRToom'].hasError('required')">
+          <mat-error *ngIf="roomFrom.controls['totalRoom'].hasError('required')">
             Vui lòng nhập thông tin
           </mat-error>
         </mat-form-field>
@@ -47,6 +50,16 @@
       </div>
     </div>
     <div class="row mb-3">
+      <div class="col-3">
+        <mat-form-field class="w-100" appearance="outline" color="accent">
+          <mat-label>Sức chứa</mat-label>
+          <input matInput formControlName="totalPersion" placeholder="Nhập sức chứa..." required>
+          <span matTextSuffix>người</span>
+          <mat-error *ngIf="roomFrom.controls['totalPersion'].hasError('required')">
+            Vui lòng nhập thông tin
+          </mat-error>
+        </mat-form-field>
+      </div>
       <div class="col-3">
         <span class="fs-5">Giờ sinh hoạt </span>
         <mat-radio-group [(ngModel)]="timeShow" [ngModelOptions]="{standalone: true}"
