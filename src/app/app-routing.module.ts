@@ -11,6 +11,7 @@ import { UserComponent } from './views/manager/user/user.component';
 const managerRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'user', component: UserComponent },
+  { path: '**', redirectTo: 'dashboard' },
 ];
 
 const routes: Routes = [
