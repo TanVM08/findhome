@@ -1,1 +1,55 @@
-<p>user works!</p>
+<div class="animated fadeIn">
+  <mat-card class="mat-card-custom mb-4">
+    <mat-card-header class="card-header-custom">
+      <mat-card-title>Thông tin tìm kiếm</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form novalidate>
+        <div class="row">
+          <div class="col-3">
+            <mat-form-field class="w-100" color="accent">
+              <mat-label>Kênh thực hiện giao dịch</mat-label>
+              <input trim="blur" matInput>
+            </mat-form-field>
+          </div>
+          <div class="col-3">
+            <mat-form-field class="w-100" color="accent">
+              <mat-label>Hình thức giao dịch</mat-label>
+              <input trim="blur" matInput>
+            </mat-form-field>
+          </div>
+          <div class="col-3">
+            <mat-form-field class="w-100" color="accent">
+              <mat-label>URL</mat-label>
+              <input trim="blur" matInput>
+            </mat-form-field>
+          </div>
+          <div class="col-3">
+            <mat-form-field class="w-100" color="accent">
+              <mat-label>Môi trường</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let obj of lstStatus" [value]="obj.value">
+                  {{ obj.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+      <div class="text-end">
+        <button type="button" class="btn btn-info color-white me-3">
+          <i class="fa fa-search" aria-hidden="true"></i>
+          Tìm kiếm
+        </button>
+        <button type="button" class="btn btn-success">
+          <i class="fa fa-user-plus" aria-hidden="true"></i>
+          Thêm mới
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <grid-table [dataSource]="dataList" [tableColumns]="tableColumns" [tableAction]="tableAction"
+    [totalItems]="totalItems" (doChangePage)="doSearch($event)">
+  </grid-table>
+</div>

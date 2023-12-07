@@ -5,7 +5,7 @@
 $base-color: #f7346f;
 html,
 body {
-  height: 100%;
+  // height: 100%;
   background-color: #f6f5f2;
   font-family: "Montserrat", sans-serif;
 }
@@ -122,8 +122,24 @@ body {
   border-radius: 16px;
   border-width: 1px !important;
 }
+
+// ========================mat-card-custom========================
+.mat-mdc-card-header {
+  display: flex;
+  padding: 0px !important;
+}
+.card-header-custom {
+  border-bottom: #ccc 1px solid;
+  margin-bottom: 20px;
+}
+.mat-card-custom {
+  padding: 16px;
+  border-radius: 4px;
+}
+.mat-mdc-card-content {
+  padding: 0px !important;
+}
 // ========================custom scroll========================
-//===================custom scroll=================
 ::-webkit-scrollbar {
   -webkit-appearance: none;
 }

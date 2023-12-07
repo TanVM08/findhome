@@ -42,6 +42,10 @@ import { UserComponent } from './views/manager/user/user.component';
 import { CurrencyFormatDirective } from './common/directive/currency-format.directive';
 import { CurrencyPipe, DecimalPipe } from '@angular/common';
 import { NgxCurrencyDirective } from 'ngx-currency';
+import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { GridTableComponent } from './common/GUI/grid-table/grid-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +61,7 @@ import { NgxCurrencyDirective } from 'ngx-currency';
     ManagerComponent,
     DashboardComponent,
     UserComponent,
+    GridTableComponent,
     CurrencyFormatDirective,
   ],
   imports: [
@@ -84,6 +89,9 @@ import { NgxCurrencyDirective } from 'ngx-currency';
     MatSidenavModule,
     MatListModule,
     NgxCurrencyDirective,
+    MatTableModule,
+    MatCheckboxModule,
+    MatTooltipModule,
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro },

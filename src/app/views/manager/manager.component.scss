@@ -23,6 +23,12 @@
     }
   }
 }
+.sidenav-content {
+  position: relative;
+  display: block;
+  padding: 25px;
+  background-color: #f6f7fb;
+}
 .selected-menu-item {
   border-left: 5px solid #f7346f;
   color: #f7346f !important;

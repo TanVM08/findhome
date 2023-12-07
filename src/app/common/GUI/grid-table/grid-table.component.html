@@ -1,0 +1,78 @@
+<mat-card class="mat-card-custom-table mat-card-custom">
+  <div class="row ms-8">
+    <div class="col-md-3">
+      <mat-card-title class="title-header-table">
+        Kết quả tìm kiếm: <strong>{{totalItems}}</strong> bản ghi
+      </mat-card-title>
+    </div>
+  </div>
+  <mat-card-content class="mat-card-content-custom">
+    <div class="scroll-x">
+      <table mat-table [dataSource]="dataSource" [width]="widthTable">
+        <ng-container *ngIf="showCheckbox" matColumnDef="checkbox">
+          <th style="width: 5%" class="text-center" mat-header-cell *matHeaderCellDef>
+            <mat-checkbox [(ngModel)]="checkAll" (change)="onCheckAll($event)"></mat-checkbox>
+          </th>
+          <td class="text-center" mat-cell *matCellDef="let item">
+            <mat-checkbox [(ngModel)]="item.checked" (change)="onCheckItem($event)"
+              (click)="$event.stopPropagation()"></mat-checkbox>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="no">
+          <th style="width: 5%" class="text-center" mat-header-cell *matHeaderCellDef>
+            STT
+          </th>
+          <td class="text-center" mat-cell *matCellDef="let item; let i = index">
+            {{ pageInfo.page * pageInfo.pageSize + (i + 1) }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="func">
+          <th style="width: 8%" class="text-center" mat-header-cell *matHeaderCellDef>
+            Chức năng
+          </th>
+          <td class="text-center" mat-cell *matCellDef="let item">
+            <ul class="table-action">
+              <span *ngFor="let action of tableAction">
+                <li class="text-link" *ngIf="checkDisplay(action, item)"
+                  matTooltip="{{ viewTooltipName(action, item) }}" (click)="doClickAction(action, item)">
+                  <i *ngIf="action.iconType === 1" class="{{ viewIconName(action, item) }}"></i>
+                </li>
+              </span>
+            </ul>
+          </td>
+        </ng-container>
+        <ng-container [matColumnDef]="column.name" *ngFor="let column of columnsView">
+          <th [style.width]="
+                            column.options && column.options.width
+                                ? column.options.width
+                                : 'auto'
+                        " class="text-center" mat-header-cell *matHeaderCellDef>
+            {{ column.label }}
+          </th>
+          <td mat-cell [ngClass]="[
+                            column.options && column.options.align
+                                ? column.options.align
+                                : '']
+                        " *matCellDef="let item; let i = index">
+            <span *ngIf="!column.options.icon" [innerHtml]="renderValue(item, column, i)"></span>
+            <span *ngIf="column.options.icon">
+              <!-- <svg cIcon name="{{ renderValueIcon(item, column) }}"></svg> -->
+            </span>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" appTableHover>
+        </tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell text-center" [attr.colspan]="displayedColumns.length">
+            Không có dữ liệu
+          </td>
+        </tr>
+      </table>
+    </div>
+    <mat-paginator [length]="totalItems" [pageSize]="pageInfo.pageSize" [pageSizeOptions]="[5, 10, 15, 20,50]"
+      [showFirstLastButtons]="true" [pageIndex]="pageInfo.page" (page)="onChangePage($event)">
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>
