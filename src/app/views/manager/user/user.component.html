@@ -6,27 +6,15 @@
     <mat-card-content>
       <form novalidate>
         <div class="row">
-          <div class="col-3">
+          <div class="col-4">
             <mat-form-field class="w-100" color="accent">
-              <mat-label>Kênh thực hiện giao dịch</mat-label>
+              <mat-label>Tên đăng nhập/email</mat-label>
               <input trim="blur" matInput>
             </mat-form-field>
           </div>
-          <div class="col-3">
+          <div class="col-4">
             <mat-form-field class="w-100" color="accent">
-              <mat-label>Hình thức giao dịch</mat-label>
-              <input trim="blur" matInput>
-            </mat-form-field>
-          </div>
-          <div class="col-3">
-            <mat-form-field class="w-100" color="accent">
-              <mat-label>URL</mat-label>
-              <input trim="blur" matInput>
-            </mat-form-field>
-          </div>
-          <div class="col-3">
-            <mat-form-field class="w-100" color="accent">
-              <mat-label>Môi trường</mat-label>
+              <mat-label>Trạng thái</mat-label>
               <mat-select>
                 <mat-option *ngFor="let obj of lstStatus" [value]="obj.value">
                   {{ obj.name }}

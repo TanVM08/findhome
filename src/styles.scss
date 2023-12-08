@@ -162,3 +162,27 @@ body {
   background-color: #fff;
   border-radius: 8px;
 }
+//====================status==================
+.status-success {
+  float: left;
+  width: 100%;
+  background: #5cb85c;
+  padding: 5px;
+  color: #fff;
+  border-radius: 5px;
+  min-width: 88px;
+  text-align: center;
+  min-height: 30px;
+}
+
+.status-error {
+  float: left;
+  width: 100%;
+  background: #eb2226;
+  padding: 5px;
+  color: #fff;
+  border-radius: 5px;
+  min-width: 88px;
+  text-align: center;
+  min-height: 30px;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-user',
@@ -13,38 +14,144 @@ export class UserComponent implements OnInit {
     pageSize: 10,
     page: 0,
   };
-  dataList: any = [];
+  dataList: any = [
+    {
+      avatar: '123',
+      userName: 'Vũ Minh Tân 1',
+      email: 'vuminhtan0103@gmail.com',
+      createDate: new Date(),
+      isActive: 1,
+    },
+    {
+      avatar: '123',
+      userName: 'Vũ Minh Tân 2',
+      email: 'vuminhtan0103@gmail.com',
+      createDate: new Date(),
+      isActive: 1,
+    },
+    {
+      avatar: '123',
+      userName: 'Vũ Minh Tân 3',
+      email: 'vuminhtan0103@gmail.com',
+      createDate: new Date(),
+      isActive: 0,
+    },
+    {
+      avatar: '123',
+      userName: 'Vũ Minh Tân 4',
+      email: 'vuminhtan0103@gmail.com',
+      createDate: new Date(),
+      isActive: 0,
+    },
+    {
+      avatar: '123',
+      userName: 'Vũ Minh Tân 5',
+      email: 'vuminhtan0103@gmail.com',
+      createDate: new Date(),
+      isActive: 1,
+    },
+    {
+      avatar: '123',
+      userName: 'Vũ Minh Tân 5',
+      email: 'vuminhtan0103@gmail.com',
+      createDate: new Date(),
+      isActive: 1,
+    },
+    {
+      avatar: '123',
+      userName: 'Vũ Minh Tân 5',
+      email: 'vuminhtan0103@gmail.com',
+      createDate: new Date(),
+      isActive: 1,
+    },
+    {
+      avatar: '123',
+      userName: 'Vũ Minh Tân 5',
+      email: 'vuminhtan0103@gmail.com',
+      createDate: new Date(),
+      isActive: 1,
+    },
+    {
+      avatar: '123',
+      userName: 'Vũ Minh Tân 5',
+      email: 'vuminhtan0103@gmail.com',
+      createDate: new Date(),
+      isActive: 1,
+    },
+    {
+      avatar: '123',
+      userName: 'Vũ Minh Tân 5',
+      email: 'vuminhtan0103@gmail.com',
+      createDate: new Date(),
+      isActive: 1,
+    },
+    {
+      avatar: '123',
+      userName: 'Vũ Minh Tân 5',
+      email: 'vuminhtan0103@gmail.com',
+      createDate: new Date(),
+      isActive: 1,
+    },
+    {
+      avatar: '123',
+      userName: 'Vũ Minh Tân 5',
+      email: 'vuminhtan0103@gmail.com',
+      createDate: new Date(),
+      isActive: 1,
+    },
+    {
+      avatar: '123',
+      userName: 'Vũ Minh Tân 5',
+      email: 'vuminhtan0103@gmail.com',
+      createDate: new Date(),
+      isActive: 1,
+    },
+    {
+      avatar: '123',
+      userName: 'Vũ Minh Tân 5',
+      email: 'vuminhtan0103@gmail.com',
+      createDate: new Date(),
+      isActive: 1,
+    },
+    {
+      avatar: '123',
+      userName: 'Vũ Minh Tân 5',
+      email: 'vuminhtan0103@gmail.com',
+      createDate: new Date(),
+      isActive: 1,
+    },
+  ];
   totalItems: number = 0;
   tableColumns: any = [
     {
-      name: 'paymentChannelCode',
-      label: 'Kênh thực hiện giao dịch',
+      name: 'avatar',
+      label: 'Avatar',
       options: {
         width: '10%',
       },
     },
     {
-      name: 'paymentTypeName',
-      label: 'Hình thức giao dịch',
+      name: 'userName',
+      label: 'Tên đăng nhập',
       options: {
         width: '20%',
       },
     },
     {
-      name: 'url',
-      label: 'URL',
+      name: 'email',
+      label: 'Email',
       options: {
-        width: '30%',
+        width: '20%',
       },
     },
     {
-      name: 'devMode',
-      label: 'Môi trường',
+      name: 'createDate',
+      label: 'Ngày tạo',
       options: {
-        width: '10%',
+        width: '15%',
         align: 'text-center',
-        customBodyRender: (value: any, obj: any) => {
-          return value == 0 ? 'UAT' : 'DEV';
+        customBodyRender: (value: any) => {
+          return value ? moment(value).format('DD/MM/YYYY') : '';
         },
       },
     },
@@ -71,28 +178,40 @@ export class UserComponent implements OnInit {
   ];
   tableAction: any = [
     {
-      icon: 'feather icon-edit',
-      tooltip: 'Cập nhật',
+      icon: 'fa fa-pencil-square-o',
       iconType: 1,
+      tooltip: 'Chỉnh sửa',
+      doAction: (item: any) => {},
+    },
+    {
+      icon: 'fa fa-refresh',
+      iconType: 1,
+      tooltip: 'Khôi phục mật khẩu',
       doAction: (item: any) => {},
     },
     {
       iconType: 1,
       customIcon: (obj: any) => {
-        return obj['isActive'] === 0
-          ? 'feather icon-check-circle'
-          : 'feather icon-slash';
+        return obj['isActive'] === 0 ? 'fa fa-unlock' : 'fa fa-lock';
       },
       customTooltip: (obj: any) => {
-        return obj['isActive'] === 0 ? 'Đang hoạt động' : 'Không hoạt động';
+        return obj['isActive'] === 0 ? 'Mở khoá' : 'Khoá';
       },
+      doAction: (item: any) => {
+        let rs = item['isActive'] === 0 ? 2 : 1;
+      },
+    },
+    {
+      icon: 'fa fa-trash-o',
+      iconType: 1,
+      tooltip: 'Xóa',
       doAction: (item: any) => {},
     },
   ];
   lstStatus: any = [
     { name: '---Tất cả---', value: -1 },
-    { name: 'DEV', value: 1 },
-    { name: 'UAT', value: 0 },
+    { name: 'Hoạt động', value: 1 },
+    { name: 'Không hoạt động', value: 0 },
   ];
 
   doSearch(pageInfo?: any) {
