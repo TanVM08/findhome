@@ -46,6 +46,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { GridTableComponent } from './common/GUI/grid-table/grid-table.component';
+import { NgChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +93,7 @@ import { GridTableComponent } from './common/GUI/grid-table/grid-table.component
     MatTableModule,
     MatCheckboxModule,
     MatTooltipModule,
+    NgChartsModule,
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro },

@@ -1,1 +1,8 @@
-<p>dashboard works!</p>
+<canvas baseChart [type]="'pie'" [datasets]="pieChartDatasets" [labels]="pieChartLabels" [options]="pieChartOptions"
+  [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+</canvas>
+
+
+<canvas baseChart [data]="barChartData" [options]="barChartOptions" [plugins]="barChartPlugins"
+  [legend]="barChartLegend" [type]="'bar'">
+</canvas>
