@@ -8,18 +8,18 @@
     <div class="menu">
       <div class="list-item">
         <div class="item">
-          <a [routerLink]="['/detail']">Giải pháp</a>
+          <a [routerLink]="['/detail']">Phòng của bạn</a>
         </div>
         <div class="item">
-          <a [routerLink]="['/detail']">Phòng yêu thích</a>
+          <a>Phòng yêu thích</a>
         </div>
         <div class="item">
-          <a [routerLink]="['/post-room']">Đăng phòng</a>
+          <a (click)="doNavigatePage('post-room')">Đăng phòng</a>
         </div>
         <div class="item">
-          <a [routerLink]="['/manager']">Quản trị</a>
+          <a (click)="doNavigatePage('manager')">Quản trị</a>
         </div>
-        <div class="item" (click)="doLogin()">Đăng nhập</div>
+        <div class="item" (click)="doLogin()" *ngIf="userInfo==null">Đăng nhập</div>
       </div>
     </div>
     <div class="search">

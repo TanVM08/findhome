@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
+import { UserDialogComponent } from './user-dialog/user-dialog.component';
 
 @Component({
   selector: 'app-user',
@@ -7,7 +9,9 @@ import * as moment from 'moment';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private dialog: MatDialog,
+  ) {}
   ngOnInit(): void {}
 
   pageInfo: any = {
@@ -223,5 +227,15 @@ export class UserComponent implements OnInit {
         page: 0,
       };
     }
+  }
+
+  doOpenDialog(){
+    let param:Object={
+      title:"Thêm mới user",
+    }
+    this.dialog.open(UserDialogComponent, {
+      width: '80%',
+      data: param,
+    });
   }
 }

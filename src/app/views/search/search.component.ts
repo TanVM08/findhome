@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
+import { CATEGORY, DISTRICT } from 'src/app/common/enum/EApiUrl';
+import { FetchApiService } from 'src/app/common/services/api/fetch-api.service';
+import { ToastNotiService } from 'src/app/common/services/toastr/toast-noti.service';
 
 @Component({
   selector: 'app-search',
@@ -13,32 +16,7 @@ export class SearchComponent implements OnInit {
   page: number = 0;
   pageSize: number = 10;
   totalItems: number = 50;
-  lstDistrict: any = [
-    {
-      value: -1,
-      name: '--Tất cả--',
-    },
-    {
-      value: 1,
-      name: 'Bắc Từ Liêm',
-    },
-    {
-      value: 2,
-      name: 'Nam Từ Liêm',
-    },
-    {
-      value: 3,
-      name: 'Hoàn Kiếm',
-    },
-    {
-      value: 4,
-      name: 'Cầu Giấy',
-    },
-    {
-      value: 5,
-      name: 'Hà Đông',
-    },
-  ];
+  lstDistrict: any = [];
 
   lstWard: any = [];
 
@@ -57,32 +35,13 @@ export class SearchComponent implements OnInit {
     },
   ];
 
-  lstTypeHouse: any = [
-    {
-      value: -1,
-      name: '--Tất cả--',
-    },
-    {
-      value: 1,
-      name: 'Phòng cho thuê',
-    },
-    {
-      value: 2,
-      name: 'Phòng ở ghép',
-    },
-    {
-      value: 3,
-      name: 'Kí túc xá',
-    },
-    {
-      value: 4,
-      name: 'Nhà nguyên căn',
-    },
-    {
-      value: 5,
-      name: 'Căn hộ',
-    },
-  ];
+  lstTypeHouse: any = [];
+  constructor(
+    private api: FetchApiService,
+    private toast: ToastNotiService,
+  ) { }
+
+
 
   formatLabel(value: number): string {
     if (value >= 500000) {
@@ -96,7 +55,29 @@ export class SearchComponent implements OnInit {
     console.log('priceStart', this.priceStart);
     console.log('priceEnd', this.priceEnd);
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getDataTypeHouse();
+    this.getDataDistrict();
+  }
 
-  onChangePage(item: any) {}
+  getDataDistrict() {
+    this.api.get(DISTRICT.GET_ALL_DATA).subscribe((res) => {
+      if (res) {
+        this.lstDistrict = res.data;
+      }
+
+    })
+  }
+
+  getDataTypeHouse() {
+    this.api.get(CATEGORY.GET_TYPE_HOUSE, { channelGroup: 'TYPE_ROOM' }).subscribe((res) => {
+      if (res) {
+        console.log(res);
+        this.lstTypeHouse=res.data
+      }
+
+    })
+  }
+
+  onChangePage(item: any) { }
 }

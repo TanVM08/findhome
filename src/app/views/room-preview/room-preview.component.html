@@ -21,7 +21,7 @@
 
     <div class="row mt-3">
       <div class="col col-lg-9">
-        <p class="fs-5 lh-base">{{dataInput.title}}</p>
+        <p class="fs-5 lh-base">{{dataInput.data.title}}</p>
       </div>
       <div class="col col-lg-3">
         <button type="button" class="btn btn-danger bg-base" style="float: right;">
@@ -52,34 +52,34 @@
           <div class="row mt-3">
             <div class="col-3">
               <p class="text-uppercase fs-6">Giá phòng</p>
-              <p class="fw-light">{{formatCurrency(dataInput.rentalPrice)}}</p>
+              <p class="fw-light">{{formatCurrency(dataInput.data.rentalPrice)}}</p>
             </div>
             <div class="col-3">
               <p class="text-uppercase fs-6">Diện tích</p>
-              <p class="fw-light">{{dataInput.acreage}} m2</p>
+              <p class="fw-light">{{dataInput.data.acreage}} m2</p>
             </div>
             <div class="col-3">
               <p class="text-uppercase fs-6">Đặt cọc</p>
-              <p class="fw-light">{{formatCurrency(dataInput.deposits)}}</p>
+              <p class="fw-light">{{formatCurrency(dataInput.data.deposits)}}</p>
             </div>
             <div class="col-3">
               <p class="text-uppercase fs-6">Sức chứa</p>
-              <p class="fw-light">{{dataInput.totalPersion}} người</p>
+              <p class="fw-light">{{dataInput.data.totalPersion}} người</p>
             </div>
           </div>
 
           <div class="row mt-3">
             <div class="col-3">
               <p class="text-uppercase fs-6">Điện</p>
-              <p class="fw-light">{{formatCurrency(dataInput.electricBill)}}/số</p>
+              <p class="fw-light">{{formatCurrency(dataInput.data.electricBill)}}/số</p>
             </div>
             <div class="col-3">
               <p class="text-uppercase fs-6">Nước</p>
-              <p class="fw-light">{{formatCurrency(dataInput.waterBill)}}/m3</p>
+              <p class="fw-light">{{formatCurrency(dataInput.data.waterBill)}}/m3</p>
             </div>
             <div class="col-3">
               <p class="text-uppercase fs-6">Wifi</p>
-              <p class="fw-light">{{formatCurrency(dataInput.internetBill)}}/tháng</p>
+              <p class="fw-light">{{formatCurrency(dataInput.data.internetBill)}}/tháng</p>
             </div>
             <div class="col-3">
               <p class="text-uppercase fs-6">Trạng thái</p>
@@ -90,20 +90,20 @@
           <div class="row mt-3">
             <div class="col-3" *ngIf="dataInput.totalRoom>1">
               <p class="text-uppercase fs-6">Số phòng hiện có</p>
-              <p class="fw-light">{{dataInput.totalRoom}}</p>
+              <p class="fw-light">{{dataInput.data.totalRoom}}</p>
             </div>
             <div class="col-3" *ngIf="dataInput.timeStart">
               <p class="text-uppercase fs-6">Giờ mở cửa</p>
-              <p class="fw-light">{{dataInput.timeStart}}</p>
+              <p class="fw-light">{{dataInput.data.timeStart}}</p>
             </div>
             <div class="col-3" *ngIf="dataInput.timeEnd">
               <p class="text-uppercase fs-6">Giờ đóng cửa</p>
-              <p class="fw-light">{{dataInput.timeEnd}}</p>
+              <p class="fw-light">{{dataInput.data.timeEnd}}</p>
             </div>
           </div>
 
           <div class="row mt-3">
-            <p class="fs-6">Địa chỉ: {{dataInput.address}}</p>
+            <p class="fs-6">Địa chỉ: {{dataInput.data.address}}</p>
           </div>
         </div>
       </div>
@@ -122,7 +122,7 @@
             </div>
             <div class="col-4 border-end border-black">
               <p class="fs-6 fw-bold">TanVM</p>
-              <p>SĐT: {{dataInput.phoneNumber}}</p>
+              <p>SĐT: {{dataInput.data.phoneNumber}}</p>
             </div>
             <div class="col-6">
               <p>Ngày đăng: 10/11/2022</p>
@@ -144,7 +144,7 @@
 
           <div class="row mt-3">
             <div class="text-content">
-              <div [innerHTML]="dataInput.description"></div>
+              <div [innerHTML]="dataInput.data.description"></div>
             </div>
           </div>
         </div>

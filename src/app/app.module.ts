@@ -47,6 +47,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { GridTableComponent } from './common/GUI/grid-table/grid-table.component';
 import { NgChartsModule } from 'ng2-charts';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; 
+import { AppHttpInterceptor } from './common/interceptor/http.interceptor';
+import { UserDialogComponent } from './views/manager/user/user-dialog/user-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +68,7 @@ import { NgChartsModule } from 'ng2-charts';
     UserComponent,
     GridTableComponent,
     CurrencyFormatDirective,
+    UserDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,9 +99,16 @@ import { NgChartsModule } from 'ng2-charts';
     MatCheckboxModule,
     MatTooltipModule,
     NgChartsModule,
+    NgxSpinnerModule,
+    HttpClientModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AppHttpInterceptor,
+      multi: true,
+  },
     CurrencyPipe,
     DecimalPipe,
   ],

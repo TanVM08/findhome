@@ -8,7 +8,7 @@
           <mat-label>Loại phòng</mat-label>
           <mat-select formControlName="type">
             <mat-option *ngFor="let item of lstRoomType" [value]="item.value">
-              {{item.name}}
+              {{item.displayName}}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="roomFrom.controls['type'].hasError('required')">
@@ -19,10 +19,9 @@
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Số lượng phòng hiện có</mat-label>
-          <input matInput formControlName="totalRoom" placeholder="Nhập số lượng phòng..." required type="number"
-            min="1">
+          <input matInput formControlName="total" placeholder="Nhập số lượng phòng..." required type="number" min="1">
           <span matTextSuffix>phòng</span>
-          <mat-error *ngIf="roomFrom.controls['totalRoom'].hasError('required')">
+          <mat-error *ngIf="roomFrom.controls['total'].hasError('required')">
             Vui lòng nhập thông tin
           </mat-error>
         </mat-form-field>
@@ -53,9 +52,9 @@
       <div class="col-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Sức chứa</mat-label>
-          <input matInput formControlName="totalPersion" placeholder="Nhập sức chứa..." required>
+          <input matInput formControlName="capacity" placeholder="Nhập sức chứa..." required type="number">
           <span matTextSuffix>người</span>
-          <mat-error *ngIf="roomFrom.controls['totalPersion'].hasError('required')">
+          <mat-error *ngIf="roomFrom.controls['capacity'].hasError('required')">
             Vui lòng nhập thông tin
           </mat-error>
         </mat-form-field>
@@ -139,13 +138,22 @@
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Quận huyện</mat-label>
-          <input matInput formControlName="districId" placeholder="Last name, First name" required>
+          <mat-select formControlName="districtId">
+            <mat-option *ngFor="let item of lstDistrict" [value]="item.id"
+              (onSelectionChange)="onChangeDistrict(item.id)">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Xã phường/thị trấn</mat-label>
-          <input matInput formControlName="warId" placeholder="Last name, First name" required>
+          <mat-select formControlName="warId">
+            <mat-option *ngFor="let item of lstWard" [value]="item.id">
+              {{item.name}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
       <div class="col col-lg-6">
@@ -190,12 +198,6 @@
     <div class="row mt-3">
       <div class="col col-lg-3">
         <mat-form-field class="w-100" appearance="outline" color="accent">
-          <mat-label>Tên chủ phòng</mat-label>
-          <input matInput placeholder="Last name, First name" required>
-        </mat-form-field>
-      </div>
-      <div class="col col-lg-3">
-        <mat-form-field class="w-100" appearance="outline" color="accent">
           <mat-label>Số điện thoại</mat-label>
           <input matInput formControlName="phoneNumber" placeholder="Nhập số điện thoại..." required>
           <mat-error *ngIf="roomFrom.controls['phoneNumber'].hasError('required')">
@@ -221,11 +223,11 @@
         <i class="fa fa-eye" aria-hidden="true"></i>
         Xem trước
       </button>
-      <button type="button" class="btn btn-info color-white me-3" (click)="doSave()">
+      <button type="button" class="btn btn-info color-white me-3" (click)="doSave(1)">
         <i class="fa fa-plus" aria-hidden="true"></i>
         Tạo nháp
       </button>
-      <button type="button" class="btn btn-danger bg-base">
+      <button type="button" class="btn btn-danger bg-base" (click)="doSave(2)">
         <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
         Đăng phòng
       </button>

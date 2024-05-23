@@ -43,4 +43,6 @@ export class AppComponent implements OnInit {
       this.isShowFooter = true;
     }
   }
+
+  
 }

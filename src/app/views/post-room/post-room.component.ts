@@ -8,6 +8,8 @@ import { ImagePreviewComponent } from '../image-preview/image-preview.component'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { RoomPreviewComponent } from '../room-preview/room-preview.component';
 import { REGEX_PATERN } from 'src/app/common/enum/ERegexPatern';
+import { FetchApiService } from 'src/app/common/services/api/fetch-api.service';
+import { CATEGORY, DISTRICT, ROOMS, WARD } from 'src/app/common/enum/EApiUrl';
 @Component({
   selector: 'app-post-room',
   templateUrl: './post-room.component.html',
@@ -28,51 +30,35 @@ export class PostRoomComponent implements OnInit {
     'image/pdf',
     'image/psd',
   ];
-  lstRoomType: any = [
-    {
-      value: 1,
-      name: 'Phòng cho thuê',
-    },
-    {
-      value: 2,
-      name: 'Phòng ở ghép',
-    },
-    {
-      value: 1,
-      name: 'Nhà nguyên căn',
-    },
-    {
-      value: 1,
-      name: 'Căn hộ',
-    },
-    {
-      value: 1,
-      name: 'Ký túc xá/Homestay',
-    },
-  ];
+  lstRoomType: any = [];
+  lstDistrict: any = [];
+  lstWard: any = [];
   isEditable = false;
   constructor(
     private toastr: ToastNotiService,
     private dialog: MatDialog,
-    public fb: FormBuilder
-  ) {}
+    public fb: FormBuilder,
+    private api: FetchApiService,
+  ) { }
   ngOnInit(): void {
     this.buildForm();
+    this.getDataTypeRoom();
+    this.getDataDistrict();
   }
 
   buildForm() {
     this.roomFrom = this.fb.group({
       id: [null, []],
       type: [null, [Validators.required]], //kieu phong
-      totalRoom: [1, [Validators.required]], //so luong phong hien co
-      totalPersion: [null, Validators.required],
+      total: [1, [Validators.required]], //so luong phong hien co
+      capacity: [null, Validators.required],// suc chua
       acreage: [null, [Validators.required]], // dien tich
       rentalPrice: [null, [Validators.required]], //gia cho thue
       deposits: [null, [Validators.required]], // dat coc
       electricBill: [null, [Validators.required]], //tien dien
       waterBill: [null, [Validators.required]], //tien nuoc
       internetBill: [null, [Validators.required]], //tien internet
-      districId: [null, [Validators.required]], //ma quan huyen
+      districtId: [null, [Validators.required]], //ma quan huyen
       warId: [null, [Validators.required]], //ma xa phuong thi tran
       address: [null, [Validators.required, Validators.maxLength(500)]], //ten duong,so nha
       title: ['', [Validators.required, Validators.maxLength(200)]], // tieu de
@@ -83,8 +69,41 @@ export class PostRoomComponent implements OnInit {
       ], // so dien thoai
       timeStart: [null, []], //gio mo cua
       timeEnd: [null, []], //gio dong cua
-      // status: [null, [Validators.required]], //trang thai bai dang
+      status: [null, []], //trang thai bai dang
     });
+  }
+
+  setValueToField(item: any, data: any) {
+    return this.roomFrom.get(item)?.setValue(data);
+  }
+  getDataDistrict() {
+    this.api.get(DISTRICT.GET_ALL_DATA).subscribe((res) => {
+      if (res) {
+        this.lstDistrict = res.data;
+      }
+
+    })
+  }
+
+  onChangeDistrict(value: any) {
+    this.setValueToField("warId", null);
+    this.getDataWardByDistrict(value);
+  }
+
+  getDataWardByDistrict(districtId: number) {
+    this.api.get(WARD.GET_DATA_BY_DISTRICT + districtId).subscribe((res) => {
+      this.lstWard = res.data;
+    })
+
+  }
+
+  getDataTypeRoom() {
+    this.api.get(CATEGORY.GET_TYPE_HOUSE, { channelGroup: 'TYPE_ROOM' }).subscribe((res) => {
+      if (res) {
+        this.lstRoomType = res.data
+      }
+
+    })
   }
 
   changeFile(event: any) {
@@ -154,22 +173,42 @@ export class PostRoomComponent implements OnInit {
       return;
     }
     let dataSave = this.roomFrom.value;
-    dataSave.lstImage = this.listImage;
+    let dataPreview: Object = {
+      data: dataSave,
+      lstImage: this.listImage,
+    }
     this.dialog.open(RoomPreviewComponent, {
       width: '80%',
       height: '80%',
-      data: dataSave,
+      data: dataPreview,
     });
   }
 
-  doSave() {
+  doSave(valueStatus: number) {
     if (this.roomFrom.invalid) {
       this.roomFrom.markAllAsTouched();
       this.toastr.showWarning('Thông báo', 'Kiểm tra thông tin đầu vào');
       return;
     }
+    if (this.listImage.length == 0) {
+      this.toastr.showWarning(
+        'Thông báo',
+        'Vui lòng upload hình ảnh phòng của bạn !'
+      );
+      return;
+    }
+    this.setValueToField("status", valueStatus);
     let dataSave = this.roomFrom.value;
+    let fd = new FormData();
+    this.lstFile.forEach((item: any) => {
+      fd.append("lstFileUpload", item);
+    });
     console.log('dataSave', dataSave);
+    fd.append('room', JSON.stringify(dataSave))
+    console.log('fd', fd);
+    this.api.post(ROOMS.CREATE_OR_UPDATE, fd).subscribe((res) => {
+      console.log(res);
+    })
   }
 
   isCheckShowTime() {
