@@ -16,7 +16,7 @@
         <div class="item">
           <a (click)="doNavigatePage('post-room')">Đăng phòng</a>
         </div>
-        <div class="item">
+        <div class="item" *ngIf="isHide">
           <a (click)="doNavigatePage('manager')">Quản trị</a>
         </div>
         <div class="item" (click)="doLogin()" *ngIf="userInfo==null">Đăng nhập</div>
@@ -30,5 +30,26 @@
         </a>
       </div>
     </div>
+    <ng-container *ngIf="userInfo">
+      <button mat-button [matMenuTriggerFor]="userMenu" class="info">
+        <img *ngIf="!userInfo?.avatar" width="30" height="30" class="profile-image-toolbar"
+          src="../../../assets/image/avatar-trang.jpg" />
+        <img *ngIf="userInfo?.avatar" width="30" height="30" class="profile-image-toolbar"
+          src="{{ 'data:image/png;base64,' + userInfo?.avatar }}" />
+        {{ userInfo.userName }}
+        <mat-icon>expand_more</mat-icon>
+      </button>
+    </ng-container>
   </div>
 </div>
+
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item (click)="doOpenProfile()">
+    <mat-icon>account_circle</mat-icon>
+    Profile
+  </button>
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    Logout
+  </button>
+</mat-menu>

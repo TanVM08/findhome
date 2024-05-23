@@ -1,0 +1,64 @@
+<div class="form text-center">
+    <p class="text-center fs-5">Thông tin cá nhân</p>
+    <button type="button" class="btn-close" aria-label="Close" (click)="doClose()"></button>
+    <div class="profile-image">
+        <img *ngIf="!fileBase64" width="120" height="120" class="margin-top mat-elevation-z1"
+            src="../../../assets/image/avatar-trang.jpg" />
+        <img *ngIf="fileBase64" width="120" height="120" class="margin-top mat-elevation-z1"
+            src="{{ 'data:image/png;base64,' + fileBase64 }}" />
+        <button mat-mini-fab color="primary" (click)="inputField.click()">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+    <input #inputField hidden type="file" (change)="uploadFile($event)" />
+
+    <form class="mt-3" [formGroup]="userForm" (ngSubmit)="doSave()">
+        <div class="row">
+            <mat-form-field appearance="outline" class="w-100" color="accent">
+                <mat-label>Tên đăng nhập</mat-label>
+                <input type="text" matInput formControlName="userName" placeholder="Tên đăng nhập" />
+                <mat-error *ngIf="userForm.controls['userName'].hasError('required')">
+                    Vui lòng nhập thông tin
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="w-100" color="accent">
+                <mat-label>Email</mat-label>
+                <input type="text" matInput formControlName="email" placeholder="Email" />
+                <mat-error *ngIf="userForm.controls['email'].hasError('required')">
+                    Vui lòng nhập thông tin
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="w-100" color="accent">
+                <mat-label>Mật Khẩu</mat-label>
+                <input type="text" [type]="hide1? 'password' : 'text'" matInput formControlName="userPass" />
+                <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide1">
+                    <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.controls['userPass'].hasError('required')">
+                    Vui lòng nhập thông tin
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="w-100" color="accent">
+                <mat-label>Xác nhận lại mật khẩu</mat-label>
+                <input type="text" [type]="hide2? 'password' : 'text'" matInput formControlName="userPassConfirm" />
+                <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide2">
+                    <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.controls['userPassConfirm'].hasError('required')">
+                    Vui lòng nhập thông tin
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <button type="submit" class="margin-top" mat-raised-button color="primary">
+            Đăng kí
+        </button>
+    </form>
+</div>

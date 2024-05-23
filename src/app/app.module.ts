@@ -32,6 +32,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatMenuModule } from '@angular/material/menu';
 import { ToastrModule } from 'ngx-toastr';
 import { ImagePreviewComponent } from './views/image-preview/image-preview.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
@@ -51,6 +52,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; 
 import { AppHttpInterceptor } from './common/interceptor/http.interceptor';
 import { UserDialogComponent } from './views/manager/user/user-dialog/user-dialog.component';
+import { RegisterComponent } from './views/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +71,7 @@ import { UserDialogComponent } from './views/manager/user/user-dialog/user-dialo
     GridTableComponent,
     CurrencyFormatDirective,
     UserDialogComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,7 +103,8 @@ import { UserDialogComponent } from './views/manager/user/user-dialog/user-dialo
     MatTooltipModule,
     NgChartsModule,
     NgxSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatMenuModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro },

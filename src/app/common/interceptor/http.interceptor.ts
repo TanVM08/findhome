@@ -1,9 +1,9 @@
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
-import {NgxSpinnerService} from "ngx-spinner";
-import {Observable, throwError} from 'rxjs';
-import {catchError, finalize} from 'rxjs/operators';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
+import { Observable, throwError } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
 import { AuthService } from '../services/auth/auth.service';
 import { ToastNotiService } from '../services/toastr/toast-noti.service';
 import { environment } from 'src/enviroment/enviroment';
@@ -72,21 +72,22 @@ export class AppHttpInterceptor implements HttpInterceptor {
     addAuthToken(request: HttpRequest<any>) {
         let token: any = sessionStorage.getItem(environment.accessToken);
         let reqClone: any;
-        let reqIgnore = ['login']
+        let reqIgnore = ['ws']
         if (reqIgnore.includes(request.url)) {
             reqClone = request.clone({
                 url: environment.apiUrl + request.url,
             });
+            return reqClone.clone({
+                setHeaders: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
         } else {
             reqClone = request.clone({
-                url: environment.apiUrl + 'oauth/' + request.url,
+                url: environment.apiUrl + request.url,
             });
+            return reqClone;
         }
-        return reqClone;
-        // return reqClone.clone({
-        //     setHeaders: {
-        //         Authorization: `Bearer ${token}`,
-        //     },
-        // });
+
     }
 }

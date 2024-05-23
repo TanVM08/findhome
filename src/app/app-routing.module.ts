@@ -7,6 +7,7 @@ import { PostRoomComponent } from './views/post-room/post-room.component';
 import { ManagerComponent } from './views/manager/manager.component';
 import { DashboardComponent } from './views/manager/dashboard/dashboard.component';
 import { UserComponent } from './views/manager/user/user.component';
+import { RegisterComponent } from './views/register/register.component';
 
 const managerRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'post-room',
     component: PostRoomComponent,
+  },
+  {
+    path: 'profile',
+    component: RegisterComponent,
   },
   {
     path: 'manager',

@@ -190,3 +190,7 @@ body {
 .ck-editor__editable {
   min-height: 200px;
 }
+//custom mat-menu
+.mat-mdc-button.mat-unthemed {
+  --mdc-text-button-label-text-color: #fff !important;
+}
