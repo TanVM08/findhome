@@ -11,7 +11,10 @@ export enum CATEGORY {
 }
 
 export enum ROOMS {
-    CREATE_OR_UPDATE = "oauth/rooms/create-or-update",
+    CREATE_OR_UPDATE = "oauth/rooms/ws/create-or-update",
+    SEARCH_DATA='oauth/rooms/search-data',
+    GET_DATA_DETAIL='oauth/rooms/get-data-detail/',
+    GET_DATA_BY_USER_ID='oauth/rooms/ws/get-data-by-user-id'
 }
 
 export enum USER {

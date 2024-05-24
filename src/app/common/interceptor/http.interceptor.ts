@@ -36,7 +36,7 @@ export class AppHttpInterceptor implements HttpInterceptor {
                     this.toast.showWarning('Thông báo', 'Phiên làm việc của bạn đã hết hạn. Vui lòng đăng nhập lại hệ thống.');
                     localStorage.clear();
                     sessionStorage.clear();
-                    // this.router.navigate(['/signin']);
+                    this.router.navigate(['/home']);
                 } else {
                     let pathUrl: string = error.url ? error.url : '';
                     if (pathUrl.includes('login')) {
@@ -72,8 +72,8 @@ export class AppHttpInterceptor implements HttpInterceptor {
     addAuthToken(request: HttpRequest<any>) {
         let token: any = sessionStorage.getItem(environment.accessToken);
         let reqClone: any;
-        let reqIgnore = ['ws']
-        if (reqIgnore.includes(request.url)) {
+        let reqIgnore = 'ws';
+        if (request.url.includes(reqIgnore)) {
             reqClone = request.clone({
                 url: environment.apiUrl + request.url,
             });

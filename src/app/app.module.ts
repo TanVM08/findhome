@@ -53,6 +53,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppHttpInterceptor } from './common/interceptor/http.interceptor';
 import { UserDialogComponent } from './views/manager/user/user-dialog/user-dialog.component';
 import { RegisterComponent } from './views/register/register.component';
+import { UserRoomComponent } from './views/user-room/user-room.component';
+import { FavoriteRoomComponent } from './views/favorite-room/favorite-room.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +74,8 @@ import { RegisterComponent } from './views/register/register.component';
     CurrencyFormatDirective,
     UserDialogComponent,
     RegisterComponent,
+    UserRoomComponent,
+    FavoriteRoomComponent,
   ],
   imports: [
     BrowserModule,

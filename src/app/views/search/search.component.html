@@ -5,25 +5,26 @@
         <p class="fw-bolder fs-4 color-base">Thông tin tìm kiếm</p>
         <mat-form-field class="w-100" [color]="colorBase">
           <mat-label>Quận/huyện</mat-label>
-          <mat-select>
+          <mat-select [(ngModel)]="districtId">
+            <mat-option [value]="-1">--Tất cả--</mat-option>
             <mat-option *ngFor="let item of lstDistrict" [value]="item.id">
               {{item.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="w-100">
+        <!-- <mat-form-field class="w-100">
           <mat-label>Xác thực</mat-label>
           <mat-select>
             <mat-option *ngFor="let item of lstAccuracy" [value]="item.value">
               {{item.name}}
             </mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
 
         <mat-form-field class="w-100">
           <mat-label>Loại phòng</mat-label>
-          <mat-select>
+          <mat-select [(ngModel)]="type">
             <mat-option [value]="-1">--Tất cả--</mat-option>
             <mat-option *ngFor="let item of lstTypeHouse" [value]="item.value">
               {{item.displayName}}
@@ -38,9 +39,9 @@
           <input [(ngModel)]="priceEnd" matSliderEndThumb>
         </mat-slider>
 
-        <p class="text-center fs-5"><a href="#"
+        <p class="text-center fs-5"><a
             class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-            (click)="isCheck()">Áp
+            (click)="doSearch()">Áp
             dụng</a>
         </p>
       </div>
@@ -48,56 +49,22 @@
     <div class="col col-lg-6">
       <div class="card-custom p-3">
         <p class="fw-bolder fs-4 color-base">Kết quả tìm kiếm</p>
-        <div class="row my-3">
+        <div class="row my-3" *ngFor="let item of dataList; index as i;  ">
           <div class="col-3">
-            <img class="img-fluid img-cast" src="../../../assets/image/LEWLEW.jpg" alt="">
+            <!-- <img class="img-fluid img-cast" src="../../../assets/image/LEWLEW.jpg" alt=""> -->
+            <img class="img-fluid img-cast" src="{{ 'data:image/png;base64,' + getImg(item.lstImg[0]) }}" alt="" (click)="doDetail(item.id)">
           </div>
           <div class="col-9">
-            <p class="fw-bolder"> Phòng cho thuê Mỹ Đình, Nam Từ Liêm, Hà Nội</p>
-            <p> <strong>Kiểu phòng:</strong> Phòng cho thuê</p>
-            <p> <strong>Diện tích:</strong> 30 m2</p>
-            <p> <strong>Địa chỉ:</strong> 173 Đường Phạm Hùng, Phường Trung Hòa, Quận Cầu Giấy, Hà Nội </p>
-            <p><strong>Giá thuê:</strong> <span class="fw-bolder color-base"> 5.000.000 đ</span></p>
+            <p class="fw-bolder">{{titleSearch(item.type,item.districtName,item.wardName)}}</p>
+            <p> <strong>Kiểu phòng:</strong> {{typeHouse(item.type)}}</p>
+            <p> <strong>Diện tích:</strong> {{item.acreage}} m2</p>
+            <p> <strong>Địa chỉ:</strong> {{item.address}}</p>
+            <p><strong>Giá thuê:</strong> <span class="fw-bolder color-base"> {{item.rentalPrice | number:'1.0-0'}}
+                VND</span></p>
           </div>
         </div>
-
-        <div class="row my-3">
-          <div class="col-3">
-            <img class="img-fluid img-cast" src="../../../assets/image/LEWLEW.jpg" alt="">
-          </div>
-          <div class="col-9">
-            <p class="fw-bolder"> Phòng cho thuê Mỹ Đình, Nam Từ Liêm, Hà Nội</p>
-            <p> <strong>Kiểu phòng:</strong> Phòng cho thuê</p>
-            <p> <strong>Diện tích:</strong> 30 m2</p>
-            <p> <strong>Địa chỉ:</strong> 173 Đường Phạm Hùng, Phường Trung Hòa, Quận Cầu Giấy, Hà Nội </p>
-            <p><strong>Giá thuê:</strong> <span class="fw-bolder color-base"> 5.000.000 đ</span></p>
-          </div>
-        </div>
-
-        <div class="row my-3">
-          <div class="col-3">
-            <img class="img-fluid img-cast" src="../../../assets/image/background_house.jpg" alt="">
-          </div>
-          <div class="col-9">
-            <p class="fw-bolder"> Phòng cho thuê Mỹ Đình, Nam Từ Liêm, Hà Nội</p>
-            <p> <strong>Kiểu phòng:</strong> Phòng cho thuê</p>
-            <p> <strong>Diện tích:</strong> 30 m2</p>
-            <p> <strong>Địa chỉ:</strong> 173 Đường Phạm Hùng, Phường Trung Hòa, Quận Cầu Giấy, Hà Nội </p>
-            <p><strong>Giá thuê:</strong> <span class="fw-bolder color-base"> 5.000.000 đ</span></p>
-          </div>
-        </div>
-
-        <div class="row my-3">
-          <div class="col-3">
-            <img class="img-fluid img-cast" src="../../../assets/image/background_house.jpg" alt="">
-          </div>
-          <div class="col-9">
-            <p class="fw-bolder"> Phòng cho thuê Mỹ Đình, Nam Từ Liêm, Hà Nội</p>
-            <p> <strong>Kiểu phòng:</strong> Phòng cho thuê</p>
-            <p> <strong>Diện tích:</strong> 30 m2</p>
-            <p> <strong>Địa chỉ:</strong> 173 Đường Phạm Hùng, Phường Trung Hòa, Quận Cầu Giấy, Hà Nội </p>
-            <p><strong>Giá thuê:</strong> <span class="fw-bolder color-base"> 5.000.000 đ</span></p>
-          </div>
+        <div class="row my-3" *ngIf="dataList.length==0">
+          <h2 class="text-center color-base">Không có dữ liệu</h2>
         </div>
         <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 15, 20,50]"
           [showFirstLastButtons]="true" [pageIndex]="page" (page)="onChangePage($event)">

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { CATEGORY, DISTRICT } from 'src/app/common/enum/EApiUrl';
+import { CATEGORY, DISTRICT, ROOMS } from 'src/app/common/enum/EApiUrl';
 import { FetchApiService } from 'src/app/common/services/api/fetch-api.service';
 import { ToastNotiService } from 'src/app/common/services/toastr/toast-noti.service';
-
+import * as _ from 'lodash';
+import { NavigationExtras, Router } from '@angular/router';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -13,13 +14,17 @@ export class SearchComponent implements OnInit {
   colorBase = 'accent' as ThemePalette;
   priceStart = 0;
   priceEnd = 5000000;
+  lstDistrict: any = [];
+  lstWard: any = [];
   page: number = 0;
   pageSize: number = 10;
   totalItems: number = 50;
-  lstDistrict: any = [];
+  dataList: any = [];
 
-  lstWard: any = [];
-
+  districtId!: number;
+  rentalPrice!: number;
+  acreage!: number;
+  type!: number;
   lstAccuracy: any = [
     {
       value: -1,
@@ -39,6 +44,7 @@ export class SearchComponent implements OnInit {
   constructor(
     private api: FetchApiService,
     private toast: ToastNotiService,
+    private router: Router,
   ) { }
 
 
@@ -58,6 +64,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.getDataTypeHouse();
     this.getDataDistrict();
+    this.doSearch();
   }
 
   getDataDistrict() {
@@ -72,11 +79,54 @@ export class SearchComponent implements OnInit {
   getDataTypeHouse() {
     this.api.get(CATEGORY.GET_TYPE_HOUSE, { channelGroup: 'TYPE_ROOM' }).subscribe((res) => {
       if (res) {
-        console.log(res);
-        this.lstTypeHouse=res.data
+        this.lstTypeHouse = res.data
       }
 
     })
+  }
+
+  doSearch() {
+    let param = {
+      type: this.type,
+      districtId: this.districtId,
+      acreage: this.acreage,
+      page: this.page,
+      pageSize: this.pageSize,
+    }
+    debugger
+    this.api.post(ROOMS.SEARCH_DATA, param).subscribe((res) => {
+      if (res) {
+        this.dataList = res.data.list;
+        this.totalItems = res.data.count;
+      }
+    })
+  }
+
+  titleSearch(type: number, district: String, ward: String) {
+    let title;
+    title = _.find(this.lstTypeHouse, (item) => {
+      return item.value == type;
+    }).displayName;
+    return `${title} ${district} ${ward}`;
+  }
+
+  typeHouse(type: number) {
+    return _.find(this.lstTypeHouse, (item) => {
+      return item.value == type;
+    }).displayName;
+  }
+
+  getImg(item: any) {
+    return item.pathStorage;
+  }
+
+  doDetail(id:number){
+    const navigationExtras: NavigationExtras = {
+      state: {
+        data: id,
+      }
+    };
+    this.router.navigate(['/detail'],navigationExtras);
   }
 
   onChangePage(item: any) { }

@@ -208,6 +208,9 @@ export class PostRoomComponent implements OnInit {
     console.log('fd', fd);
     this.api.post(ROOMS.CREATE_OR_UPDATE, fd).subscribe((res) => {
       console.log(res);
+      if (res.data == 0) {
+        this.toastr.showSuccess('Thông báo', 'Phòng của bạn đã được thêm mới');
+      }
     })
   }
 
