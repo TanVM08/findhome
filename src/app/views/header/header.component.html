@@ -8,10 +8,10 @@
     <div class="menu">
       <div class="list-item">
         <div class="item">
-          <a [routerLink]="['/detail']">Phòng của bạn</a>
+          <a (click)="doNavigatePage('user-room')">Phòng của bạn</a>
         </div>
         <div class="item">
-          <a>Phòng yêu thích</a>
+          <a (click)="doNavigatePage('favorite-room')">Phòng yêu thích</a>
         </div>
         <div class="item">
           <a (click)="doNavigatePage('post-room')">Đăng phòng</a>

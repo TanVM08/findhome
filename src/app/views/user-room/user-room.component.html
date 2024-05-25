@@ -1,1 +1,58 @@
-<p>user-room works!</p>
+<div class="contain pt-4 w-95 center">
+    <div class="row">
+        <div class="col-10">
+            <p class="fw-bolder fs-3 color-base">Phòng của bạn</p>
+        </div>
+    </div>
+    <div class="card-custom p-3 height">
+        <div class="card-body">
+            <div class="row my-3" *ngFor="let item of dataList; index as i;  ">
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col-4">
+                            <!-- <img class="img-fluid img-pre" src="../../../assets/image/LEWLEW.jpg" alt=""> -->
+                            <img class="img-fluid img-pre" src="{{ 'data:image/png;base64,' + item.image }}" alt="">
+
+                        </div>
+                        <div class="col-8">
+                            <p class="fw-bolder"> {{titleSearch(item.type,item.districtName,item.wardName)}} </p>
+                            <p> <strong>Kiểu phòng:</strong> {{typeHouse(item.type)}}</p>
+                            <p> <strong>Diện tích:</strong> {{item.acreage}} m2</p>
+                            <p> <strong>Địa chỉ:</strong> {{item.address}}
+                            </p>
+                            <p><strong>Giá thuê:</strong> <span class="fw-bolder color-base">
+                                    {{item.rentalPrice}}</span></p>
+                            <p><strong>Trạng thái:</strong> <span class="fw-bolder color-base">
+                                    {{convertStatus(item.status)}}</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row" style="justify-content: end;">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon>calendar_today</mat-icon>
+                                <span>Danh sách người hẹn xem phòng</span>
+                            </button>
+                            <button mat-menu-item (click)="doDetail(item.id)">
+                                <mat-icon>search</mat-icon>
+                                <span>Xem chi tiết</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon>delete</mat-icon>
+                                <span>Xóa bài đăng</span>
+                            </button>
+                        </mat-menu>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="no-data">
+            <img *ngIf="dataList.length==0" src="../../../assets/image/background_no_data.jpg" alt="">
+        </div>
+    </div>
+
+</div>

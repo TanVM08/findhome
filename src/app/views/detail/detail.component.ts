@@ -54,10 +54,5 @@ export class DetailComponent implements OnInit {
     });
   }
 
-  getUserRoom() {
-    this.api.get(ROOMS.GET_DATA_BY_USER_ID).subscribe((res: any) => {
-      console.log('dataUserRoom', res);
-    })
-  }
 
 }

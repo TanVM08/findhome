@@ -1,11 +1,17 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/common/services/auth/auth.service';
 @Component({
   selector: 'app-manager',
   templateUrl: './manager.component.html',
   styleUrls: ['./manager.component.scss'],
 })
-export class ManagerComponent {
+export class ManagerComponent implements OnInit {
+  constructor(private auth: AuthService,) { }
+  userInfo!: any
+  ngOnInit(): void {
+    this.getUserInfo();
+  }
+
   lstMenuItem: any = [
     {
       icon: 'dashboard',
@@ -28,4 +34,8 @@ export class ManagerComponent {
       route: 'users',
     },
   ];
+
+  getUserInfo() {
+    this.userInfo = this.auth.getUserInfo();
+  }
 }

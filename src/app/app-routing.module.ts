@@ -8,6 +8,8 @@ import { ManagerComponent } from './views/manager/manager.component';
 import { DashboardComponent } from './views/manager/dashboard/dashboard.component';
 import { UserComponent } from './views/manager/user/user.component';
 import { RegisterComponent } from './views/register/register.component';
+import { UserRoomComponent } from './views/user-room/user-room.component';
+import { FavoriteRoomComponent } from './views/favorite-room/favorite-room.component';
 
 const managerRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -42,6 +44,14 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
+    path: 'user-room',
+    component: UserRoomComponent,
+  },
+  {
+    path: 'favorite-room',
+    component: FavoriteRoomComponent,
+  },
+  {
     path: 'manager',
     component: ManagerComponent,
     children: managerRoutes,
@@ -52,4 +62,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

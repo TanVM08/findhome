@@ -29,8 +29,8 @@
       <p class="fs-5 lh-base">{{dataDetail.title}}</p>
     </div>
     <div class="col col-lg-3">
-      <button type="button" class="btn btn-danger bg-base" style="float: right;" (click)="getUserRoom()">
-        <i class="fa fa-share-alt" aria-hidden="true"> chia sẻ</i>
+      <button type="button" class="btn  btn-outline-danger" style="float: right;" matTooltip="Thêm vào yêu thích">
+        <i class="fa fa-heart-o" aria-hidden="true"></i>
       </button>
     </div>
   </div>
@@ -38,7 +38,7 @@
   <div class="row">
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item fs-5"><a href="#">Hà Nội</a></li>
+        <li class="breadcrumb-item fs-5"><a>Hà Nội</a></li>
         <li class="breadcrumb-item active fs-5" aria-current="page">{{dataDetail.districtName}}</li>
         <li class="breadcrumb-item active fs-5" aria-current="page">{{dataDetail.wardName}}</li>
       </ol>

@@ -1,9 +1,11 @@
 <mat-sidenav-container class="container-manager">
   <mat-sidenav opened mode="side" class="mat-sidenav">
     <div class="sidenav-header">
-      <img src="../../../assets/image/LEWLEW.png" alt="" width="100" height="100">
+      <img *ngIf="!userInfo.avatar" src="../../../assets/image/avatar-trang.jpg" alt="" width="100" height="100">
+      <img *ngIf="userInfo && userInfo.avatar" src="{{ 'data:image/png;base64,' + userInfo?.avatar }}" alt=""
+        width="100" height="100">
       <div class="header-text">
-        <h2>Vũ Minh Tân</h2>
+        <h2>{{userInfo.userName}}</h2>
       </div>
     </div>
     <mat-nav-list>

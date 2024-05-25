@@ -19,7 +19,7 @@
                     <div class="col-4">
                         <mat-form-field class="w-100">
                             <mat-label>Tên đăng nhập</mat-label>
-                            <input matInput formControlName="userName">
+                            <input matInput formControlName="userName" readonly>
                             <mat-error *ngIf="userForm.controls['userName'].hasError('required')">
                                 Vui lòng nhập thông tin
                             </mat-error>
@@ -35,13 +35,23 @@
                         </mat-form-field>
                     </div>
 
+                    <div class="col-4">
+                        <mat-form-field class="w-100">
+                            <mat-label>Quyền hệ thống</mat-label>
+                            <mat-select formControlName="roleId">
+                                <mat-option *ngFor="let item of lstRole" [value]="item.id">
+                                    {{item.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
                 </div>
             </form>
 
             <div class="text-end">
                 <button type="button" class="btn btn-primary me-3" (click)="doSave()">
                     <i class="fa fa-user-plus" aria-hidden="true"></i>
-                    Thêm mới
+                    Lưu
                 </button>
                 <button type="button" class="btn btn-danger" (click)="doCloseDialog()">
                     <i class="fa fa-times" aria-hidden="true"></i>

@@ -44,7 +44,6 @@ export class HeaderComponent implements OnInit {
       this.toastr.showWarning('Thông báo', 'Vui lòng đăng nhập vào website');
       this.doLogin();
     } else {
-      console.log('userInfo', this.userInfo);
       this.router.navigate([url]);
     }
   }

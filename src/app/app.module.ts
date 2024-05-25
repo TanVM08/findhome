@@ -55,6 +55,7 @@ import { UserDialogComponent } from './views/manager/user/user-dialog/user-dialo
 import { RegisterComponent } from './views/register/register.component';
 import { UserRoomComponent } from './views/user-room/user-room.component';
 import { FavoriteRoomComponent } from './views/favorite-room/favorite-room.component';
+import { DialogComfirmComponent } from './common/GUI/dialog-comfirm/dialog-comfirm.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,6 +77,7 @@ import { FavoriteRoomComponent } from './views/favorite-room/favorite-room.compo
     RegisterComponent,
     UserRoomComponent,
     FavoriteRoomComponent,
+    DialogComfirmComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,23 @@
+<div class="animated fadeIn">
+    <mat-card class="mat-card-custom">
+        <mat-card-header class="card-header-custom">
+            <mat-card-title [innerHTML]="title"></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row">
+                <div class="col-12">
+                    <span [innerHTML]="message"></span>
+                </div>
+            </div>
+            <div class="text-end">
+                <button type="button" class="btn btn-primary me-3" (click)="doConfirm()">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    Xác nhận
+                </button>
+                <button type="button" class="btn btn-danger" (click)="close()">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    Hủy
+                </button>
+            </div>
+        </mat-card-content>
+    </mat-card>

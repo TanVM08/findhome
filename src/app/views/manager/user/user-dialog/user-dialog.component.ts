@@ -5,6 +5,7 @@ import { FetchApiService } from 'src/app/common/services/api/fetch-api.service';
 import { ToastNotiService } from 'src/app/common/services/toastr/toast-noti.service';
 import * as _ from 'lodash';
 import { FileUtils } from 'src/app/common/utils/file-utils';
+import { USER } from 'src/app/common/enum/EApiUrl';
 @Component({
   selector: 'app-user-dialog',
   templateUrl: './user-dialog.component.html',
@@ -12,7 +13,7 @@ import { FileUtils } from 'src/app/common/utils/file-utils';
 })
 export class UserDialogComponent implements OnInit {
   title!: String;
-  fileBase64!:any
+  fileBase64!: any
   userForm!: FormGroup;
   acceptTypeImage: string[] = [
     'image/png',
@@ -22,6 +23,7 @@ export class UserDialogComponent implements OnInit {
     'image/pdf',
     'image/psd',
   ];
+  lstRole: any = [];
   constructor(
     private dialogRef: MatDialogRef<UserDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public dataInput: any,
@@ -31,8 +33,12 @@ export class UserDialogComponent implements OnInit {
     public dialog: MatDialog,
   ) { }
   ngOnInit() {
-    this.buildForm();
     this.title = this.dataInput.title;
+    this.buildForm();
+    this.getRoles();
+    if (this.dataInput.id) {
+      this.getDataDetail(this.dataInput.id);
+    }
   }
 
   buildForm() {
@@ -41,6 +47,7 @@ export class UserDialogComponent implements OnInit {
       userName: [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-._]*$')]],
       email: [null, [Validators.required]],
       avatar: [null],
+      roleId: [null],
     });
   }
 
@@ -69,7 +76,30 @@ export class UserDialogComponent implements OnInit {
       return;
     }
     let dataForm = this.userForm.getRawValue();
-    
+
+  }
+
+  getDataDetail(userId: number) {
+    this.api.get(USER.GET_DATA_DETAIL + userId).subscribe(res => {
+      if (res.status == 200) {
+        this.userForm.setValue({
+          id: res.data.id,
+          userName: res.data.userName,
+          email: res.data.userName,
+          avatar: res.data.avatar,
+          roleId: res.data.roleId
+        });
+        this.fileBase64 = res.data.avatar;
+      }
+    })
+  }
+
+  getRoles() {
+    this.api.get(USER.GET_ROLES).subscribe(res => {
+      if (res.status == 200) {
+        this.lstRole = res.data
+      }
+    })
   }
 
   doCloseDialog(): void {
