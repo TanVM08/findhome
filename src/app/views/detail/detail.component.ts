@@ -6,6 +6,7 @@ import { ToastNotiService } from 'src/app/common/services/toastr/toast-noti.serv
 import * as _ from 'lodash';
 import { MatDialog } from '@angular/material/dialog';
 import { ImagePreviewComponent } from '../image-preview/image-preview.component';
+import { BookingDialogComponent } from '../booking-room/booking-dialog/booking-dialog.component';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -51,6 +52,13 @@ export class DetailComponent implements OnInit {
     this.dialog.open(ImagePreviewComponent, {
       width: '50%',
       data: param,
+    });
+  }
+
+  doBookingRoom() {
+    this.dialog.open(BookingDialogComponent, {
+      width: '30%',
+      data: null,
     });
   }
 

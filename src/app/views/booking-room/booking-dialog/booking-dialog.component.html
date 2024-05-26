@@ -1,0 +1,43 @@
+<div class="form text-center">
+    <p class="text-center fs-5">Đặt lịch xem phòng</p>
+    <button type="button" class="btn-close" aria-label="Close" (click)="doClose()"></button>
+
+    <form class="mt-3" [formGroup]="bookingForm">
+        <div class="row">
+            <mat-form-field appearance="outline" class="w-100" color="accent">
+                <mat-label>Họ và tên</mat-label>
+                <input type="text" matInput formControlName="displayName" placeholder="Họ và tên" />
+                <mat-error *ngIf="bookingForm.controls['displayName'].hasError('required')">
+                    Vui lòng nhập thông tin
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="w-100" color="accent">
+                <mat-label>Số điện thoại</mat-label>
+                <input type="text" matInput formControlName="phoneNumber" placeholder="Số điện thoại" />
+                <mat-error *ngIf="bookingForm.controls['phoneNumber'].hasError('required')">
+                    Vui lòng nhập thông tin
+                  </mat-error>
+                  <mat-error *ngIf="bookingForm.controls['phoneNumber'].hasError('pattern')">
+                    Định dạng số điện thoại không đúng
+                  </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="w-100" color="accent">
+                <mat-label>Thời gian xem phòng</mat-label>
+                <input type="text" matInput formControlName="appointDate" />
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" class="w-100" color="accent">
+                <mat-label>Ghi chú</mat-label>
+                <textarea matInput formControlName="note"></textarea>
+            </mat-form-field>
+        </div>
+        <button type="submit" class="margin-top" mat-raised-button color="primary">
+           Xác nhận
+        </button>
+    </form>
+</div>

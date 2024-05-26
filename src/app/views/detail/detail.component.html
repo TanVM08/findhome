@@ -29,9 +29,14 @@
       <p class="fs-5 lh-base">{{dataDetail.title}}</p>
     </div>
     <div class="col col-lg-3">
-      <button type="button" class="btn  btn-outline-danger" style="float: right;" matTooltip="Thêm vào yêu thích">
-        <i class="fa fa-heart-o" aria-hidden="true"></i>
-      </button>
+      <div style="float: right;">
+        <button type="button" class="btn btn btn-success me-3" (click)="doBookingRoom()">
+          <i class="fa fa-plane" aria-hidden="true"> Đặt xem phòng</i>
+        </button>
+        <button type="button" class="btn  btn-outline-danger" matTooltip="Thêm vào yêu thích">
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -109,7 +114,7 @@
         </div>
         <div class="row mt-4 align-items-center">
           <div class="col-2">
-            <img  *ngIf="!dataDetail.avatar" class="avatar" src="../../../assets/image/background_house.jpg" alt="">
+            <img *ngIf="!dataDetail.avatar" class="avatar" src="../../../assets/image/background_house.jpg" alt="">
             <img *ngIf="dataDetail.avatar" class="avatar" src="{{ 'data:image/png;base64,'+dataDetail.avatar}}" alt="">
 
           </div>

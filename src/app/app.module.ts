@@ -56,6 +56,8 @@ import { RegisterComponent } from './views/register/register.component';
 import { UserRoomComponent } from './views/user-room/user-room.component';
 import { FavoriteRoomComponent } from './views/favorite-room/favorite-room.component';
 import { DialogComfirmComponent } from './common/GUI/dialog-comfirm/dialog-comfirm.component';
+import { BookingRoomComponent } from './views/booking-room/booking-room.component';
+import { BookingDialogComponent } from './views/booking-room/booking-dialog/booking-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +80,8 @@ import { DialogComfirmComponent } from './common/GUI/dialog-comfirm/dialog-comfi
     UserRoomComponent,
     FavoriteRoomComponent,
     DialogComfirmComponent,
+    BookingRoomComponent,
+    BookingDialogComponent,
   ],
   imports: [
     BrowserModule,
